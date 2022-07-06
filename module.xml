@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module sdkVersion="3.5" compilationDate="10062022025114" sdkApiVersion="86" originalPluginFileName="Ficha_Minecraft.rpk" compilationDigest="f3fc5a67b918b7a86c5252f2f89df22a6e35cb7c">
+    <!--The "id" identifies your plugin globally. Must be unique, must contain only alphanumeric characters, underlines and dots and must contain at least 5 characters and a maximum of 40. Once set the ID, you should not change it;)-->
+    <id>Ficha_Minecraft</id>
+    <!--"version" is the version of your plugin. When you release a new version of your module, change here =)-->
+    <version>1.1</version>
+    <name>Ficha para mesa de minecraft</name>
+    <description>Uma Ficha feita para deixar a minha mesa de mine mais legal</description>
+    <author>tkplayer</author>
+    <site>rrpg://Minecraft+-+New+World</site>
+    <contact>tk4500#9999</contact>
+    <dataTypes>
+        <dataType title="Ficha de Minecraft" name="fmr_mine" lfmFile="Ficha.lfm">rrpg.minecraft</dataType>
+    </dataTypes>
+</module>
