@@ -24,8 +24,11 @@
 	<dataLink field=num>
 		<event name="onChange">
 		if num == 0 then
-		sheet.num = "";
-		sheet.slot = "/item/void.png"; 
+			sheet.num = "";
+			sheet.slot = "/item/void.png";
+		else num == 1 then
+			sheet.num = "";
+		end;
 		</event>
 	</dataLink>
 	<event name="onClick">
