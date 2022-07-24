@@ -90,7 +90,7 @@
 				width:100;
 				fontSize:14;
 			  }
-    </style> 
+    </style>
 	<image left="0" top="0" width="1242" height="534" src="/Ficha/img/inventory.png" />
 	<layout left="20" top="400" height="36" width="360">
 		<image height="16" width="160" left ="0" field="prt" src="/Ficha/armor/0.png"/>
