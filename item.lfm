@@ -21,6 +21,26 @@
 	<label horzTextAlign="trailing" top="20" width="32" class="numbera" text="69" fontColor="#3D3D3F" fontFamily="Minecraft" field="num"/>
 	<label horzTextAlign="trailing" top="18" width="30" class="numbera" text="69" fontColor="#FBFBFB" fontFamily="Minecraft" field="num"/>
 	<button width="34" height="34" opacity="0">
+	<event name=onStartDrag>
+		drag:addData("slot", sheet.slot);
+		drag:addData("num", sheet.num);
+		drag:addAction("vazio")
+	</event>
+	<event name=onStartDrop>
+		vazio = sheet.slot;
+		if vazio == /item/void.png then
+			drop:addData("vazio", "vazio");
+		end
+		drop:addAction("slot", 
+		function(item)
+			sheet.slot = item;
+		end);
+		drop:addAction("num",
+		function(q)
+			sheet.num = q;
+		end);
+
+	</event>
 	<dataLink field=num>
 		<event name="onChange">
 		if num == 0 then
@@ -32,7 +52,8 @@
 		</event>
 	</dataLink>
 	<event name="onClick">
-		if sheet.num == 0 then
+	item = sheet.slot;
+		if item == "/item/void.png" then
 			Dialogs.choose("Escrever o nome ou o Link", {"Nome", "Link"}, 
 			function(selected,opc)
 				if selected then
@@ -77,11 +98,10 @@
 				end
 			end);
 		else
-			quantidade = inputQuery("Quantos itens quer remover?")
+			quantidade = inputQuery("Quantos itens quer adicionar/remover?")
 			quantidade = tonumber(quantidade);
 			sheet.num = sheet.num + quantidade;
-		end
+		end;
 		</event>
 	 </button>
-
 </form>

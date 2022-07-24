@@ -233,7 +233,6 @@
 			sheet.vid = "/Ficha/heart/" ..lp.. ".png";
 			local pj = Firecast.getPersonagemDe(sheet);
 			pj.dono:requestSetBarValue(1, lp);
-			
 		</event>
 	</dataLink>
 		<dataLink field="fome">
