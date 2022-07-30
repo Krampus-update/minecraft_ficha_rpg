@@ -93,9 +93,16 @@ local function constructNew_item_slot()
             				function(item)
             					sheet.slot = item;
             				end);
+            			elseif item == sheet.slot then
             				drop:addAction("valor",
-            				function(quantia)
-            					sheet.num = tonumber(quantia);
+            				function(valor)
+            					if sheet.num + valor > 64 then
+            						tmp = valor + sheet.num - 64;
+            						sheet.num = 64;
+            						valor = tmp;
+            					else
+            						sheet.num = sheet.num + valor;
+            					end
             				end);
             			end;
         end, obj);
