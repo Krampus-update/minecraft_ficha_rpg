@@ -17,64 +17,52 @@
 				autoSize:true;
 			  }
     </style> 
-	<image style="stretch" class="item" field="slot"/>
-	<label horzTextAlign="trailing" top="20" width="32" class="numbera" text="69" fontColor="#3D3D3F" fontFamily="Minecraft" field="num"/>
-	<label horzTextAlign="trailing" top="18" width="30" class="numbera" text="69" fontColor="#FBFBFB" fontFamily="Minecraft" field="num"/>
-	<button width="34" height="34" opacity="0">
+	 <image style="stretch" class="item" field="slot"/>
+	 <label horzTextAlign="trailing" top="20" width="32" class="numbera" text="69" fontColor="#3D3D3F" fontFamily="Minecraft" field="num"/>
+	 <label horzTextAlign="trailing" top="18" width="30" class="numbera" text="69" fontColor="#FBFBFB" fontFamily="Minecraft" field="num"/>
+	 <button width="34" height="34" opacity="0">
 		<event name="onStartDrag">
 			drag:addData("slot", sheet.slot);
 			drag:addData("valor", sheet.num);
+			sheet.num = "";
+			sheet.slot = "/item/void.png";
 		</event>
 		<event name="onStartDrop">
 			if sheet.slot == "/item/void.png" then
 				drop:addAction("slot", 
 				function(item)
 					sheet.slot = item;
-				end);
-				drop:addAction("valor",
-				function(quantia)
-					sheet.num = tonumber(quantia);
+					sheet.num = drag:getData("valor");
 				end);
 			end;
 		</event>
-		<dataLink field="num">
-			<event name="onChange">
-			num = tonumber(sheet.num);
-			if num == 0 then
-				sheet.num = "";
-				sheet.slot = "/item/void.png";
-			elseif sheet.num == 1 then
-				sheet.num = ""
-			else
-				sheet.num = num;
-			end;
-			</event>
-		</dataLink>
 		<event name="onClick">
-		item = sheet.slot;
-		if item == "/item/void.png" then
-			Dialogs.choose("Escrever o nome ou o link", {"Nome", "Link"}, 
+		if sheet.slot == "/item/void.png" then
+			Dialogs.choose("Escrever o nome ou o Link", {"Nome", "Link"}, 
 			function(selected,opc)
 				if selected then
-						if opc == 1 then
-							Dialogs.inputQuery("nome do item","","",
-							function(slot)
-								sheet.slot = "/item/" ..slot..".png";
-								Dialogs.inputQuery("escreva o numero de itens","","",
-								function(numero)
-									num = tonumber(numero);
-									if num == 1 then
+					if opc == 1 then
+						Dialogs.inputQuery("nome do item","","",
+						function(slot)
+							sheet.slot = "/item/" ..slot..".png";
+							Dialogs.inputQuery("escreva o numero de itens","","",
+							function(numero)
+								num = tonumber(numero);
+								if num == 1 then
 									sheet.num = "";
-									else
+								elseif num == 0 then
+									sheet.num = "";
+									sheet.slot = "/item/void.png";
+								else
 									sheet.num = num;
-									end
-								end,
+								end
+							end,
 								function()
 									sheet.num = "";
 								end,
 								true);
-							end);
-						else
+						end);
+					else
 							Dialogs.selectImageURL("/item/void.png",
 							function(url)
 								sheet.slot = url;
@@ -83,6 +71,9 @@
 									num = tonumber(numero);
 									if num == 1 then
 									sheet.num = "";
+									elseif num == 0 then
+									sheet.num = "";
+									sheet.slot = "/item/void.png";
 									else
 									sheet.num = num;
 									end
@@ -92,21 +83,28 @@
 								end,
 								true);
 							end);
-						end
-
+					end
 				end
 			end);
 		else
-			quantidade = Dialogs.inputQuery("Quantos itens quer adicionar/remover?","","",
-			function(numero)
-				num = tonumber(numero);
-				if sheet.num == nil then
-					sheet.num = 1 + num;
-				else
-					sheet.num = sheet.num + num;
-				end;
-			end);
-		end;
+		Dialogs.inputQuery("escreva o numero de itens","","",
+							function(numero)
+								num = tonumber(numero);
+								if num == 1 then
+									sheet.num = "";
+								elseif num == 0 then
+									sheet.num = "";
+									sheet.slot = "/item/void.png";
+								else
+									sheet.num = num;
+								end
+							end,
+								function()
+									sheet.num = "";
+								end,
+								true);
+		end
 		</event>
 	 </button>
+
 </form>

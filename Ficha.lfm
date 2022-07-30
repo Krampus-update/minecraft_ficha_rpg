@@ -39,42 +39,6 @@
 			  fontFamily:Minecraft;
 			  transparent:true;
 			  }
-			  .item
-			  {
-				margins: {left=1, right=3, top=1, bottom=3};
-				width:32;
-				height:32;
-				src:/item/void.png;
-				
-			  } 
-			  .number
-			  {
-				margins: {left=3, right=1, top=10};
-				width:32;
-				height:26;
-				horzTextAlign: trailing;
-				vertTextAlign: trailing;
-				fontSize:16;
-				fontStyle:bold;
-				fontColor: #FBFBFB;
-				type:number;
-				min:0;
-				max:64;
-			  }
-			  .numbera
-			  {
-				margins: {left=3, right=1, top=10};
-				width:32;
-				height:26;
-				horzTextAlign: trailing;
-				vertTextAlign: trailing;
-				fontSize:16;
-				fontStyle:bold;
-				fontColor: #3D3D3F;
-				type:number;
-				min:0;
-				max:64;
-			  }
 			  .xp{
 				fontSize:18;
 				fontColor:#7FFF00;
@@ -90,7 +54,7 @@
 				width:100;
 				fontSize:14;
 			  }
-    </style>
+    </style> 
 	<image left="0" top="0" width="1242" height="534" src="/Ficha/img/inventory.png" />
 	<layout left="20" top="400" height="36" width="360">
 		<image height="16" width="160" left ="0" field="prt" src="/Ficha/armor/0.png"/>
@@ -233,6 +197,7 @@
 			sheet.vid = "/Ficha/heart/" ..lp.. ".png";
 			local pj = Firecast.getPersonagemDe(sheet);
 			pj.dono:requestSetBarValue(1, lp);
+			
 		</event>
 	</dataLink>
 		<dataLink field="fome">

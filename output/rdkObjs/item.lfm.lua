@@ -84,6 +84,8 @@ local function constructNew_item_slot()
         function (_, drag, x, y)
             drag:addData("slot", sheet.slot);
             			drag:addData("valor", sheet.num);
+            			sheet.slot = "/item/void.png";
+            			sheet.num = "";
         end, obj);
 
     obj._e_event1 = obj.button1:addEventListener("onStartDrop",
@@ -92,17 +94,7 @@ local function constructNew_item_slot()
             				drop:addAction("slot", 
             				function(item)
             					sheet.slot = item;
-            				end);
-            			elseif item == sheet.slot then
-            				drop:addAction("valor",
-            				function(valor)
-            					if sheet.num + valor > 64 then
-            						tmp = valor + sheet.num - 64;
-            						sheet.num = 64;
-            						valor = tmp;
-            					else
-            						sheet.num = sheet.num + valor;
-            					end
+            					sheet.num = drag:getData("valor");
             				end);
             			end;
         end, obj);
@@ -155,14 +147,10 @@ local function constructNew_item_slot()
             				end
             			end);
             		else
-            			quantidade = Dialogs.inputQuery("Quantos itens quer adicionar/remover?","","",
+            			Dialogs.inputQuery("Quantos itens quer adicionar/remover?","","",
             			function(numero)
             				num = tonumber(numero);
-            				if sheet.num == nil then
-            					sheet.num = 1 + num;
-            				else
-            					sheet.num = sheet.num + num;
-            				end;
+            				
             			end);
             		end;
         end, obj);
