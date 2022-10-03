@@ -248,6 +248,7 @@
 		sheet.protecao = phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
 		</event>
 	</dataLink>
+	
 	<dataLink field="chestplate">
 		<event name="onChange">
 		chestplates = {"empty_armor_slot_chestplate.png","leather_chestplate.png","golden_chestplate.png","chainmail_chestplate.png","iron_chestplate.png","diamond_chestplate.png","netherite_chestplate.png","elytra.png"};
