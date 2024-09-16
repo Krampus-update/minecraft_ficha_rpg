@@ -12,7 +12,7 @@ local function constructNew_item_slot()
     local self = obj;
     local sheet = nil;
 
-    rawset(obj, "_oldSetNodeObjectFunction", rawget(obj, "setNodeObject"));
+    rawset(obj, "_oldSetNodeObjectFunction", obj.setNodeObject);
 
     function obj:setNodeObject(nodeObject)
         sheet = nodeObject;
@@ -51,7 +51,7 @@ local function constructNew_item_slot()
     obj.label1:setField("num");
     obj.label1:setName("label1");
     obj.label1:setFontSize(16);
-    lfm_setPropAsString(obj.label1, "fontStyle",  "bold");
+    lfm_setPropAsString(obj.label1, "fontStyle", "bold");
     obj.label1:setAutoSize(true);
 
     obj.label2 = GUI.fromHandle(_obj_newObject("label"));
@@ -65,7 +65,7 @@ local function constructNew_item_slot()
     obj.label2:setField("num");
     obj.label2:setName("label2");
     obj.label2:setFontSize(16);
-    lfm_setPropAsString(obj.label2, "fontStyle",  "bold");
+    lfm_setPropAsString(obj.label2, "fontStyle", "bold");
     obj.label2:setAutoSize(true);
 
     obj.button1 = GUI.fromHandle(_obj_newObject("button"));
@@ -81,15 +81,15 @@ local function constructNew_item_slot()
     obj.dataLink1:setName("dataLink1");
 
     obj._e_event0 = obj.button1:addEventListener("onStartDrag",
-        function (_, drag, x, y)
+        function (drag, x, y, event)
             drag:addData("slot", sheet.slot);
             			drag:addData("valor", sheet.num);
             			sheet.slot = "/item/void.png";
             			sheet.num = "";
-        end, obj);
+        end);
 
     obj._e_event1 = obj.button1:addEventListener("onStartDrop",
-        function (_, drop, x, y, drag)
+        function (drop, x, y, drag, event)
             if sheet.slot == "/item/void.png" then
             				drop:addAction("slot", 
             				function(item)
@@ -97,10 +97,10 @@ local function constructNew_item_slot()
             					sheet.num = drag:getData("valor");
             				end);
             			end;
-        end, obj);
+        end);
 
     obj._e_event2 = obj.button1:addEventListener("onClick",
-        function (_)
+        function (event)
             item = sheet.slot;
             		if item == "/item/void.png" then
             			Dialogs.choose("Escrever o nome ou o link", {"Nome", "Link"}, 
@@ -153,10 +153,10 @@ local function constructNew_item_slot()
             				
             			end);
             		end;
-        end, obj);
+        end);
 
     obj._e_event3 = obj.dataLink1:addEventListener("onChange",
-        function (_, field, oldValue, newValue)
+        function (field, oldValue, newValue)
             num = tonumber(sheet.num);
             			if num == 0 then
             				sheet.num = "";
@@ -166,7 +166,7 @@ local function constructNew_item_slot()
             			else
             				sheet.num = num;
             			end;
-        end, obj);
+        end);
 
     function obj:_releaseEvents()
         __o_rrpgObjs.removeEventListenerById(self._e_event3);
@@ -185,10 +185,10 @@ local function constructNew_item_slot()
         end;
 
         if self.label2 ~= nil then self.label2:destroy(); self.label2 = nil; end;
-        if self.image1 ~= nil then self.image1:destroy(); self.image1 = nil; end;
-        if self.dataLink1 ~= nil then self.dataLink1:destroy(); self.dataLink1 = nil; end;
-        if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
         if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
+        if self.image1 ~= nil then self.image1:destroy(); self.image1 = nil; end;
+        if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
+        if self.dataLink1 ~= nil then self.dataLink1:destroy(); self.dataLink1 = nil; end;
         self:_oldLFMDestroy();
     end;
 
@@ -220,6 +220,7 @@ local _item_slot = {
     dataType = "", 
     formType = "undefined", 
     formComponentName = "form", 
+    cacheMode = "none", 
     title = "", 
     description=""};
 

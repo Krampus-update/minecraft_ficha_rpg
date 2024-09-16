@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module sdkVersion="3.5" compilationDate="30072022012702" sdkApiVersion="86" originalPluginFileName="Ficha_Minecraft.rpk" compilationDigest="8a9f00d06763b8df3e13d77a5355719da4918819">
+<module sdkVersion="3.7b" compilationDate="30072022011820" sdkApiVersion="87" originalPluginFileName="minecraft_ficha_rpg.rpk" compilationDigest="564223d0f878bce3f1e62a8198354947015b4cf8">
     <!--The "id" identifies your plugin globally. Must be unique, must contain only alphanumeric characters, underlines and dots and must contain at least 5 characters and a maximum of 40. Once set the ID, you should not change it;)-->
-    <id>Ficha_Minecraft_Drag</id>
+    <id>Ficha_Minecraft</id>
     <!--"version" is the version of your plugin. When you release a new version of your module, change here =)-->
-    <version>1.2</version>
-    <name>Ficha para mesa de minecraft do tk</name>
-    <description>Uma Ficha feita para deixar a minha mesa de mine mais legal</description>
-    <author>tkplayer</author>
-    <site>rrpg://Minecraft+-+New+World</site>
-    <contact>tk4500#9999</contact>
-    <dataTypes>
-        <dataType title="Ficha de Minecraft" name="fmr_mine" lfmFile="Ficha.lfm">rrpg.minecraft</dataType>
-    </dataTypes>
+    <version>1.1</version>
+    <info lang="pt-BR">
+        <!--Informações do plugin na língua "pt-BR". Você pode ter várias tags "info", uma para cada tradução que quiser.-->
+        <name>Ficha para mesa de minecraft</name>
+        <description>Uma Ficha feita para deixar a minha mesa de mine mais legal</description>
+        <author>tkplayer/Krampus</author>
+        <site>rrpg://Minecraft+-+New+World</site>
+        <contact>@umKrampus</contact>
+    </info>
 </module>

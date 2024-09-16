@@ -1,195 +1,248 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<form formType="sheetTemplate" dataType="rrpg.minecraft" 
-     title="Ficha de Minecraft" name="fmr_mine">
-	 <style>
-			  .button_left{
-						height:30;
-						width:20;
-						left:2;
-			  }
-			  .button_right{
-						height:30;
-						width:20;
-						left:62;
-			  }
-			  .armor{
-					 height:32;
-					 width:32;
-					 left:26; 
-			  
-			  }
-			  edit{
-			  fontColor:White;
-			  fontFamily:Minecraft;
-			  transparent:true;
-			  fontSize:12;
-			  }
-			  label{
-			  fontColor:White;
-			  fontFamily:Minecraft;
-			  }
-			  comboBox{
-			  fontColor:White;
-			  fontFamily:Minecraft;
-			  transparent:true;
-			  }
-			  textEditor{
-			  fontColor:White;
-			  fontFamily:Minecraft;
-			  transparent:true;
-			  }
-			  .xp{
-				fontSize:18;
-				fontColor:#7FFF00;
-				horzTextAlign:center;
-			  }
-			  .skills{
-			  items:{'trading','resource gathering','mining','exploring','farming','combat','taming'};
-			  fontSize:14;
-			  width:150;
-			  }
-			  .skilltext{
-				left:150;
-				width:100;
-				fontSize:14;
-			  }
-    </style> 
+<form formType="sheetTemplate" dataType="rrpg.minecraft"
+	title="Ficha de Minecraft" name="fmr_mine">
+	<style>
+		.button_left{
+		height:30;
+		width:20;
+		left:2;
+		}
+		.button_right{
+		height:30;
+		width:20;
+		left:62;
+		}
+		.armor{
+		height:32;
+		width:32;
+		left:26;
+
+		}
+		edit{
+		fontColor:White;
+		fontFamily:Minecraft;
+		transparent:true;
+		fontSize:12;
+		}
+		label{
+		fontColor:White;
+		fontFamily:Minecraft;
+		}
+		comboBox{
+		fontColor:White;
+		fontFamily:Minecraft;
+		transparent:true;
+		}
+		textEditor{
+		fontColor:White;
+		fontFamily:Minecraft;
+		transparent:true;
+		}
+		.item
+		{
+		margins: {left=1, right=3, top=1, bottom=3};
+		width:32;
+		height:32;
+		src:/item/void.png;
+
+		}
+		.number
+		{
+		margins: {left=3, right=1, top=10};
+		width:32;
+		height:26;
+		horzTextAlign: trailing;
+		vertTextAlign: trailing;
+		fontSize:16;
+		fontStyle:bold;
+		fontColor: #FBFBFB;
+		type:number;
+		min:0;
+		max:64;
+		}
+		.numbera
+		{
+		margins: {left=3, right=1, top=10};
+		width:32;
+		height:26;
+		horzTextAlign: trailing;
+		vertTextAlign: trailing;
+		fontSize:16;
+		fontStyle:bold;
+		fontColor: #3D3D3F;
+		type:number;
+		min:0;
+		max:64;
+		}
+		.xp{
+		fontSize:18;
+		fontColor:#7FFF00;
+		horzTextAlign:center;
+		}
+		.skills{
+		items:{'trading','resource gathering','mining','exploring','farming','combat','taming'};
+		fontSize:14;
+		width:150;
+		}
+		.skilltext{
+		left:150;
+		width:100;
+		fontSize:14;
+		}
+	</style>
 	<image left="0" top="0" width="1242" height="534" src="/Ficha/img/inventory.png" />
 	<layout left="20" top="400" height="36" width="360">
-		<image height="16" width="160" left ="0" field="prt" src="/Ficha/armor/0.png"/>
-		<image top="20" height="16" width="160" field="vid" src="/Ficha/heart/0.png"/>
-		<image top="20" left="200" height="16" width="160" field="hun" src="/Ficha/hunger/0.png"/>
-		<image top="20" left="200" height="16" width="160" field="sat" opacity="0.7" src="/Ficha/saturation/0.png"/>
+		<image height="16" width="160" left="0" field="prt" src="/Ficha/armor/0.png" />
+		<image top="20" height="16" width="160" field="vid" src="/Ficha/heart/0.png" />
+		<image top="20" left="200" height="16" width="160" field="hun" src="/Ficha/hunger/0.png" />
+		<image top="20" left="200" height="16" width="160" field="sat" opacity="0.7"
+			src="/Ficha/saturation/0.png" />
 	</layout>
 
 	<layout left="20" top="420" width="366">
-		<label left="2" top="4" fontSize="18" fontColor="#204000" horzTextAlign="center" width="366" field="lvl"/>
-		<label top="2" class="xp" width="366" field="lvl"/>
+		<label left="2" top="4" fontSize="18" fontColor="#204000" horzTextAlign="center" width="366"
+			field="lvl" />
+		<label top="2" class="xp" width="366" field="lvl" />
 	</layout>
 	<layout name="experiencia" left="20" top="442" width="366">
 		<image width="366" height="10" src="/Ficha/img/xp_bar_full.png" />
 	</layout>
-	<layout left = "20" top="30" height="144" width="240">
+	<layout left="20" top="30" height="144" width="240">
 		<button opacity="0" class="button_left" top="3">
-		<event name="onClick">
+			<event name="onClick"><![CDATA[ 
 		sheet.helmet = (tonumber(sheet.helmet) or 0) - 1;
 		if 1 > sheet.helmet then
 		sheet.helmet = 1;
 		end;
-		</event>
+		]]></event>
 		</button>
 		<button opacity="0" class="button_right" top="3">
-		<event name="onClick">
+			<event name="onClick"><![CDATA[ 
 		sheet.helmet = (tonumber(sheet.helmet) or 0) + 1;
 		if sheet.helmet > 8 then
 		sheet.helmet = 8;
 		end;
-		</event>
+		]]></event>
 		</button>
 		<button opacity="0" class="button_left" top="39">
-		<event name="onClick">
+			<event name="onClick"><![CDATA[ 
 		sheet.chestplate = (tonumber(sheet.chestplate) or 0)  - 1;
 		if 1 > sheet.chestplate then
 		sheet.chestplate = 1;
 		end;
-		</event>
+		]]></event>
 		</button>
 		<button opacity="0" class="button_right" top="39">
-		<event name="onClick">
+			<event name="onClick"><![CDATA[ 
 		sheet.chestplate = (tonumber(sheet.chestplate) or 0) + 1;
 		if sheet.chestplate > 8 then
 		sheet.chestplate = 8;
 		end;
-		</event>
+		]]></event>
 		</button>
 		<button opacity="0" class="button_left" top="75">
-		<event name="onClick">
+			<event name="onClick"><![CDATA[ 
 		sheet.leggings = (tonumber(sheet.leggings) or 0) - 1;
 		if 1 > sheet.leggings then
 		sheet.leggings = 1;
 		end;
-		</event>
+		]]></event>
 		</button>
 		<button opacity="0" class="button_right" top="75">
-		<event name="onClick">
+			<event name="onClick"><![CDATA[ 
 		sheet.leggings = (tonumber(sheet.leggings) or 0) + 1;
 		if sheet.leggings > 7 then
 		sheet.leggings = 7;
 		end;
-		</event>
+		]]></event>
 		</button>
 		<button opacity="0" class="button_left" top="111">
-		<event name="onClick">
+			<event name="onClick"><![CDATA[ 
 		sheet.boots = (tonumber(sheet.boots) or 0) - 1;
 		if 1 > sheet.boots then
 		sheet.boots = 1;
 		end;
-		</event>
+		]]></event>
 		</button>
 		<button opacity="0" class="button_right" top="111">
-		<event name="onClick">
+			<event name="onClick"><![CDATA[ 
 		sheet.boots = (tonumber(sheet.boots) or 0) + 1;
 		if sheet.boots > 7 then
 		sheet.boots = 7;
 		end;
-		</event>
+		]]></event>
 		</button>
-			<image class="armor" top="2" field="head"  src="/Ficha/img/Armor/empty_armor_slot_helmet.png" />
-			<image class="armor" top="38" field="shoulders" src="/Ficha/img/Armor/empty_armor_slot_chestplate.png"/>
-			<image class="armor" top="74" field="knees" src="/Ficha/img/Armor/empty_armor_slot_leggings.png"/>
-			<image class="armor" top="108" field="toes" src="/Ficha/img/Armor/empty_armor_slot_boots.png"/>
-			<image left="102" top="4" height="135" width="135" field="avatar" editable="true" style="autoFit" src="Ficha/img/avatar.png" animate="true"/>
+		<image class="armor" top="2" field="head" src="/Ficha/img/Armor/empty_armor_slot_helmet.png" />
+		<image class="armor" top="38" field="shoulders"
+			src="/Ficha/img/Armor/empty_armor_slot_chestplate.png" />
+		<image class="armor" top="74" field="knees"
+			src="/Ficha/img/Armor/empty_armor_slot_leggings.png" />
+		<image class="armor" top="108" field="toes"
+			src="/Ficha/img/Armor/empty_armor_slot_boots.png" />
+		<image left="102" top="4" height="135" width="135" field="avatar" editable="true"
+			style="autoFit" src="Ficha/img/avatar.png" animate="true" />
 	</layout>
 	<layout top="184" left="20" width="300" height="200">
-		<edit left="60" top="9" width="200" height="20" field="nome"/>
-		<edit top="29" left="75" width="30" height="20" type="float" horzTextAlign="trailing" field="altura" />
-		<edit top="29" left="175" width="30" height="20" type="number" horzTextAlign="trailing" field="peso" />
-		<edit top="49" left="50" width="30" height="20" type="number" horzTextAlign="trailing" field="idade" />	
-		<edit top="69" left="110" width="30" height="20" type="number" horzTextAlign="trailing" field="busto" />
-		<edit top="69" left="145" width="30" height="20" type="number" horzTextAlign="trailing" field="cintura" />
-		<edit top="69" left="175" width="30" height="20" type="number" horzTextAlign="trailing" field="quadril" />
-		<comboBox top="88" left="75" field="tendencia" items="{'Leal Bom','Neutro Bom','Caotico Bom','Leal Neutro','Neutro','Caotico Neutro','Leal Mal','Neutro Mal','Caotico Mal'}"/>		
+		<edit left="60" top="9" width="200" height="20" field="nome" />
+		<edit top="29" left="75" width="30" height="20" type="float" horzTextAlign="trailing"
+			field="altura" />
+		<edit top="29" left="175" width="30" height="20" type="number" horzTextAlign="trailing"
+			field="peso" />
+		<edit top="49" left="50" width="30" height="20" type="number" horzTextAlign="trailing"
+			field="idade" />
+		<edit top="69" left="110" width="30" height="20" type="number" horzTextAlign="trailing"
+			field="busto" />
+		<edit top="69" left="145" width="30" height="20" type="number" horzTextAlign="trailing"
+			field="cintura" />
+		<edit top="69" left="175" width="30" height="20" type="number" horzTextAlign="trailing"
+			field="quadril" />
+		<comboBox top="88" left="75" field="tendencia"
+			items="{'Leal Bom','Neutro Bom','Caotico Bom','Leal Neutro','Neutro','Caotico Neutro','Leal Mal','Neutro Mal','Caotico Mal'}" />
 		<edit top="109" left="90" width="100" height="20" field="sexualidade" />
-		<edit top="128" left="80" width="30" height="20" type="number" horzTextAlign="trailing" field="esmeraldas" />
+		<edit top="128" left="80" width="30" height="20" type="number" horzTextAlign="trailing"
+			field="esmeraldas" />
 		<textEditor top="170" left="10" width="280" height="80" field="personalidade" />
 	</layout>
 	<layout top="30" left="400" width="350" height="450">
-	<textEditor left="5" top="20" width="340" height="225" field="background"/>
-	<comboBox class="skills" field="skill_01" top="250"/>
-	<edit class="skilltext" field="skill_1" top="250"/>
-	<comboBox class="skills" field="skill_02" top="280"/>
-	<edit class="skilltext" field="skill_2" top="280"/>
-	<comboBox class="skills" field="skill_03" top="310"/>
-	<edit class="skilltext" field="skill_3" top="310"/>
-	<comboBox class="skills" field="skill_04" top="340"/>
-	<edit class="skilltext" field="skill_4" top="340"/>
-	<comboBox class="skills" field="skill_05" top="370"/>
-	<edit class="skilltext" field="skill_5" top="370"/>
-	<comboBox class="skills" field="skill_06" top="400"/>
-	<edit class="skilltext" field="skill_6" top="400"/>
-	<comboBox class="skills" field="skill_07" top="430"/>
-	<edit class="skilltext" field="skill_7" top="430"/>
+		<textEditor left="5" top="20" width="340" height="225" field="background" />
+		<comboBox class="skills" field="skill_01" top="250" />
+		<edit class="skilltext" field="skill_1" top="250" />
+		<comboBox class="skills" field="skill_02" top="280" />
+		<edit class="skilltext" field="skill_2" top="280" />
+		<comboBox class="skills" field="skill_03" top="310" />
+		<edit class="skilltext" field="skill_3" top="310" />
+		<comboBox class="skills" field="skill_04" top="340" />
+		<edit class="skilltext" field="skill_4" top="340" />
+		<comboBox class="skills" field="skill_05" top="370" />
+		<edit class="skilltext" field="skill_5" top="370" />
+		<comboBox class="skills" field="skill_06" top="400" />
+		<edit class="skilltext" field="skill_6" top="400" />
+		<comboBox class="skills" field="skill_07" top="430" />
+		<edit class="skilltext" field="skill_7" top="430" />
 	</layout>
 	<layout top="30" left="770" width="450" height="480">
-	<recordList top="35" left="15" width="330" name="ender_chest" field="ender" templateForm="item_slot" autoHeight="true" layout="horizontalTiles" minQt="27"/>
-	<recordList top="167" left="15" width="330" name="inventory" field="inv" templateForm="item_slot" autoHeight="true" layout="horizontalTiles" minQt="27"/>
-	<recordList top="283" left="15" width="330" name="hotbar" field="bar" templateForm="item_slot" autoHeight="true" layout="horizontalTiles" minQt="9"/>
+		<recordList top="35" left="15" width="330" name="ender_chest" field="ender"
+			templateForm="item_slot" autoHeight="true" layout="horizontalTiles" minQt="27" />
+		<recordList top="167" left="15" width="330" name="inventory" field="inv"
+			templateForm="item_slot" autoHeight="true" layout="horizontalTiles" minQt="27" />
+		<recordList top="283" left="15" width="330" name="hotbar" field="bar"
+			templateForm="item_slot" autoHeight="true" layout="horizontalTiles" minQt="9" />
 	</layout>
 	<layout>
-	<label field="vida" opacity="0" />
-	<label field="fome" opacity="0" />
-	<label field="saturacao" opacity="0" />
-	<label field="protecao" opacity="0" />
-	<label field="helmet" opacity="0" />
-	<label field="chestplate" opacity="0" />
-	<label field="leggings" opacity="0" />
-	<label field="boots" opacity="0" />
-	<label field="slot" opacity="0" />
-	<label field="percent" opacity="0" />
+		<label field="vida" opacity="0" />
+		<label field="fome" opacity="0" />
+		<label field="saturacao" opacity="0" />
+		<label field="protecao" opacity="0" />
+		<label field="helmet" opacity="0" />
+		<label field="chestplate" opacity="0" />
+		<label field="leggings" opacity="0" />
+		<label field="boots" opacity="0" />
+		<label field="slot" opacity="0" />
+		<label field="percent" opacity="0" />
 	</layout>
 	<dataLink field="vida">
-		<event name="onChange">
+		<event name="onChange"><![CDATA[ 
 			local lp = tonumber(sheet.vida)
 			if 0 > lp then
 			sheet.vida = 0;
@@ -197,11 +250,10 @@
 			sheet.vid = "/Ficha/heart/" ..lp.. ".png";
 			local pj = Firecast.getPersonagemDe(sheet);
 			pj.dono:requestSetBarValue(1, lp);
-			
-		</event>
+		]]></event>
 	</dataLink>
-		<dataLink field="fome">
-		<event name="onChange">
+	<dataLink field="fome">
+		<event name="onChange"><![CDATA[ 
 			hunger = tonumber(sheet.fome);
 			if sat > hunger then
 			sat = hunger
@@ -214,10 +266,10 @@
 			pj.dono:requestSetBarValue(2, hunger);
 			pj.dono:requestSetBarValue(3, sat);			
 
-		</event>
+		]]></event>
 	</dataLink>
-			<dataLink field="saturacao">
-		<event name="onChange">
+	<dataLink field="saturacao">
+		<event name="onChange"><![CDATA[ 
 			sat = tonumber(sheet.saturacao);
 			if sat > hunger then
 			sat = hunger
@@ -229,62 +281,67 @@
 			local pj = Firecast.getPersonagemDe(sheet);
 			pj.dono:requestSetBarValue(2, hunger);
 			pj.dono:requestSetBarValue(3, sat);
-		</event>
+		]]></event>
 	</dataLink>
-		<dataLink field="protecao">
-		<event name="onChange">
+	<dataLink field="protecao">
+		<event name="onChange"><![CDATA[ 
 			local prot = tonumber(sheet.protecao)
 			sheet.prt = "/Ficha/armor/" ..prot.. ".png";
-		</event>
+		]]></event>
 	</dataLink>
 	<dataLink field="helmet">
-		<event name="onChange">
-		helmets = {"empty_armor_slot_helmet.png","leather_helmet.png","golden_helmet.png","chainmail_helmet.png","iron_helmet.png","diamond_helmet.png","netherite_helmet.png","turtle_helmet.png"};
-		phelm = {0,1,2,2,2,3,3,2}
-		for i=1, 8,1 do
-		helmets[i] = "/Ficha/img/Armor/"..helmets[i];
-		end
-		sheet.head = helmets[tonumber(sheet.helmet)]
-		sheet.protecao = phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
-		</event>
+		<event name="onChange"><![CDATA[ 
+			helmets = {"empty_armor_slot_helmet.png","leather_helmet.png","golden_helmet.png","chainmail_helmet.png","iron_helmet.png","diamond_helmet.png","netherite_helmet.png","turtle_helmet.png"};
+			phelm = {0,1,2,2,2,3,3,2}
+			for i=1, 8,1 do
+			helmets[i] = "/Ficha/img/Armor/"..helmets[i];
+			end
+			sheet.head = helmets[tonumber(sheet.helmet)]
+			sheet.protecao =
+			phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
+		]]></event>
 	</dataLink>
-	
 	<dataLink field="chestplate">
-		<event name="onChange">
-		chestplates = {"empty_armor_slot_chestplate.png","leather_chestplate.png","golden_chestplate.png","chainmail_chestplate.png","iron_chestplate.png","diamond_chestplate.png","netherite_chestplate.png","elytra.png"};
-		pchest = {0,3,5,5,6,8,8,0}
-		for i=1,8,1 do
-		chestplates[i] = "/Ficha/img/Armor/"..chestplates[i];
-		end;
-		sheet.shoulders = chestplates[tonumber(sheet.chestplate)]
-		sheet.protecao = phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
-		</event>
+		<event name="onChange"><![CDATA[ 
+			chestplates = {"empty_armor_slot_chestplate.png","leather_chestplate.png","golden_chestplate.png","chainmail_chestplate.png","iron_chestplate.png","diamond_chestplate.png","netherite_chestplate.png","elytra.png"};
+			pchest = {0,3,5,5,6,8,8,0}
+			for i=1,8,1 do
+			chestplates[i] = "/Ficha/img/Armor/"..chestplates[i];
+			end;
+			sheet.shoulders = chestplates[tonumber(sheet.chestplate)]
+			sheet.protecao =
+			phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
+		]]></event>
 	</dataLink>
 	<dataLink field="leggings">
-		<event name="onChange">
-		leggingss = {"empty_armor_slot_leggings.png","leather_leggings.png","golden_leggings.png","chainmail_leggings.png","iron_leggings.png","diamond_leggings.png","netherite_leggings.png"};
-		pleg = {0,2,3,4,5,6,6}
-		for i=1,7,1 do
-		leggingss[i] = "/Ficha/img/Armor/"..leggingss[i];
-		end;
-		sheet.knees = leggingss[tonumber(sheet.leggings)]
-		sheet.protecao = phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
-		</event>
+		<event name="onChange"><![CDATA[ 
+			leggingss =
+			{"empty_armor_slot_leggings.png","leather_leggings.png","golden_leggings.png","chainmail_leggings.png","iron_leggings.png","diamond_leggings.png","netherite_leggings.png"};
+			pleg = {0,2,3,4,5,6,6}
+			for i=1,7,1 do
+			leggingss[i] = "/Ficha/img/Armor/"..leggingss[i];
+			end;
+			sheet.knees = leggingss[tonumber(sheet.leggings)]
+			sheet.protecao =
+			phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
+		]]></event>
 	</dataLink>
 	<dataLink field="boots">
-		<event name="onChange">
-		bootss = {"empty_armor_slot_boots.png","leather_boots.png","golden_boots.png","chainmail_boots.png","iron_boots.png","diamond_boots.png","netherite_boots.png","turtle_boots.png"};
-		pbot = {0,1,1,1,2,3,3}
-		for i=1,7,1 do
-		bootss[i] = "/Ficha/img/Armor/"..bootss[i];
-		end;
-		sheet.toes = bootss[tonumber(sheet.boots)]
-		sheet.protecao = phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
-		</event>
+		<event name="onChange"><![CDATA[ 
+			bootss =
+			{"empty_armor_slot_boots.png","leather_boots.png","golden_boots.png","chainmail_boots.png","iron_boots.png","diamond_boots.png","netherite_boots.png","turtle_boots.png"};
+			pbot = {0,1,1,1,2,3,3}
+			for i=1,7,1 do
+			bootss[i] = "/Ficha/img/Armor/"..bootss[i];
+			end;
+			sheet.toes = bootss[tonumber(sheet.boots)]
+			sheet.protecao =
+			phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
+		]]></event>
 	</dataLink>
 	<dataLink field="percent">
-		<event name="onChange">
-					self.experiencia.width = sheet.percent;
-		</event>	
+		<event name="onChange"><![CDATA[ 
+			self.experiencia.width = sheet.percent;
+		]]></event>
 	</dataLink>
 </form>
