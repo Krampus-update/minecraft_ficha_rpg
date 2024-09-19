@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<form formType="sheetTemplate" dataType="rrpg.minecraft" title="Ficha de Minecraft" name="fmr_mine">
+<form formType="sheetTemplate" dataType="Krampus.minecraft" title="Ficha de Explorador (Minecraft)" name="fmr_mine">
+
 	<style>
 			  .button_left{
 						height:30;
 						width:20;
-						left:2;
+						left:3;
 			  }
 			  .button_right{
 						height:30;
@@ -70,9 +71,9 @@
 		<image width="366" height="10" src="/Ficha/img/xp_bar_full.png" />
 	</layout>
 	<layout left = "20" top="30" height="144" width="240">
-		<button opacity="0" class="button_left" top="3">
+		<button cursor="handPoint" opacity="0" class="button_left" top="3">
 			<event name="onClick">
-				<![CDATA[
+				<![CDATA[ 
 				sheet.helmet = (tonumber(sheet.helmet) or 0) - 1;
 				if 1 > sheet.helmet then
 					sheet.helmet = 1;
@@ -80,9 +81,9 @@
 				]]>
 			</event>
 		</button>
-		<button opacity="0" class="button_right" top="3">
+		<button cursor="handPoint" opacity="0" class="button_right" top="3">
 			<event name="onClick">
-				<![CDATA[
+				<![CDATA[ 
 				sheet.helmet = (tonumber(sheet.helmet) or 0) + 1;
 				if sheet.helmet > 8 then
 					sheet.helmet = 8;
@@ -90,9 +91,9 @@
 				]]>
 			</event>
 		</button>
-		<button opacity="0" class="button_left" top="39">
+		<button cursor="handPoint" opacity="0" class="button_left" top="39">
 			<event name="onClick">
-				<![CDATA[
+				<![CDATA[ 
 				sheet.chestplate = (tonumber(sheet.chestplate) or 0)  - 1;
 				if 1 > sheet.chestplate then
 					sheet.chestplate = 1;
@@ -100,19 +101,20 @@
 				]]>
 			</event>
 		</button>
-		<button opacity="0" class="button_right" top="39">
+		<button cursor="handPoint" opacity="0" class="button_right" top="39">
 			<event name="onClick">
-				<![CDATA[
+				<![CDATA[ 
 				sheet.chestplate = (tonumber(sheet.chestplate) or 0) + 1;
 				if sheet.chestplate > 8 then
 					sheet.chestplate = 8;
 				end;
 				]]>
+
 			</event>
 		</button>
-		<button opacity="0" class="button_left" top="75">
+		<button cursor="handPoint" opacity="0" class="button_left" top="75">
 			<event name="onClick">
-				<![CDATA[
+				<![CDATA[ 
 				sheet.leggings = (tonumber(sheet.leggings) or 0) - 1;
 				if 1 > sheet.leggings then
 					sheet.leggings = 1;
@@ -120,9 +122,9 @@
 				]]>
 			</event>
 		</button>
-		<button opacity="0" class="button_right" top="75">
+		<button cursor="handPoint" opacity="0" class="button_right" top="75">
 			<event name="onClick">
-				<![CDATA[
+				<![CDATA[ 
 				sheet.leggings = (tonumber(sheet.leggings) or 0) + 1;
 				if sheet.leggings > 7 then
 					sheet.leggings = 7;
@@ -130,9 +132,9 @@
 				]]>
 			</event>
 		</button>
-		<button opacity="0" class="button_left" top="111">
+		<button cursor="handPoint" opacity="0" class="button_left" top="111">
 			<event name="onClick">
-				<![CDATA[
+				<![CDATA[ 
 				sheet.boots = (tonumber(sheet.boots) or 0) - 1;
 				if 1 > sheet.boots then
 					sheet.boots = 1;
@@ -140,9 +142,9 @@
 				]]>
 			</event>
 		</button>
-		<button opacity="0" class="button_right" top="111">
+		<button cursor="handPoint" opacity="0" class="button_right" top="111">
 			<event name="onClick">
-				<![CDATA[
+				<![CDATA[ 
 				sheet.boots = (tonumber(sheet.boots) or 0) + 1;
 				if sheet.boots > 7 then
 					sheet.boots = 7;
@@ -150,6 +152,7 @@
 				]]>
 			</event>
 		</button>
+
 		<image class="armor" top="2" field="head" src="/Ficha/img/Armor/empty_armor_slot_helmet.png" />
 		<image class="armor" top="38" field="shoulders" src="/Ficha/img/Armor/empty_armor_slot_chestplate.png"/>
 		<image class="armor" top="74" field="knees" src="/Ficha/img/Armor/empty_armor_slot_leggings.png"/>
@@ -208,12 +211,11 @@
 			<![CDATA[
 			local lp = tonumber(sheet.vida)
 			if 0 > lp then
-			sheet.vida = 0;
+				sheet.vida = 0;
 			end;
 			sheet.vid = "/Ficha/heart/" ..lp.. ".png";
 			local pj = Firecast.getPersonagemDe(sheet);
 			pj.dono:requestSetBarValue(1, lp);
-			
 			]]>
 		</event>
 	</dataLink>
@@ -222,10 +224,10 @@
 			<![CDATA[
 			hunger = tonumber(sheet.fome);
 			if sat > hunger then
-			sat = hunger
+				sat = hunger
 			end;
 			if 0 > hunger then
-			sheet.fome = 0;
+				sheet.fome = 0;
 			end;
 			sheet.hun = "/Ficha/hunger/" ..hunger.. ".png";
 			local pj = Firecast.getPersonagemDe(sheet);
@@ -286,11 +288,10 @@
 				helmets[i] = "/Ficha/img/Armor/"..helmets[i];
 			end
 			sheet.head = helmets[tonumber(sheet.helmet)]
-			sheet.protecao = protecao_capacete[tonumber(sheet.helmet)]+protecao_peitoral[tonumber(sheet.chestplate)]+protecao_calca[tonumber(sheet.leggings)]+protecao_botas[tonumber(sheet.boots)];
+			sheet.protecao = protecao_capacete[tonumber(sheet.helmet) or 0]+protecao_peitoral[tonumber(sheet.chestplate) or 0]+protecao_calca[tonumber(sheet.leggings) or 0]+protecao_botas[tonumber(sheet.boots) or 0];
 			]]>
 		</event>
 	</dataLink>
-
 	<dataLink field="chestplate">
 		<event name="onChange">
 			<![CDATA[
@@ -318,7 +319,7 @@
 				chestplates[i] = "/Ficha/img/Armor/"..chestplates[i];
 			end;
 			sheet.shoulders = chestplates[tonumber(sheet.chestplate)]
-			sheet.protecao = protecao_capacete[tonumber(sheet.helmet)]+protecao_peitoral[tonumber(sheet.chestplate)]+protecao_calca[tonumber(sheet.leggings)]+protecao_botas[tonumber(sheet.boots)];
+			sheet.protecao = protecao_capacete[tonumber(sheet.helmet) or 0]+protecao_peitoral[tonumber(sheet.chestplate) or 0]+protecao_calca[tonumber(sheet.leggings) or 0]+protecao_botas[tonumber(sheet.boots) or 0];
 			]]>
 		</event>
 	</dataLink>
@@ -347,13 +348,13 @@
 			leggingss[i] = "/Ficha/img/Armor/"..leggingss[i];
 			end;
 			sheet.knees = leggingss[tonumber(sheet.leggings)]
-			sheet.protecao = protecao_capacete[tonumber(sheet.helmet)]+protecao_peitoral[tonumber(sheet.chestplate)]+protecao_calca[tonumber(sheet.leggings)]+protecao_botas[tonumber(sheet.boots)];
+			sheet.protecao = protecao_capacete[tonumber(sheet.helmet) or 0]+protecao_peitoral[tonumber(sheet.chestplate) or 0]+protecao_calca[tonumber(sheet.leggings) or 0]+protecao_botas[tonumber(sheet.boots) or 0];
 			]]>
 		</event>
 	</dataLink>
 	<dataLink field="boots">
 		<event name="onChange">
-			<![CDATA[>
+			<![CDATA[
 			botas = {
 				"empty_armor_slot_boots.png",
 				"leather_boots.png",
@@ -377,7 +378,7 @@
 				botas[i] = "/Ficha/img/Armor/"..botas[i];
 			end;
 			sheet.toes = botas[tonumber(sheet.boots)]
-			sheet.protecao = protecao_capacete[tonumber(sheet.helmet)]+protecao_peitoral[tonumber(sheet.chestplate)]+protecao_calca[tonumber(sheet.leggings)]+protecao_botas[tonumber(sheet.boots)];
+			sheet.protecao = protecao_capacete[tonumber(sheet.helmet) or 0]+protecao_peitoral[tonumber(sheet.chestplate) or 0]+protecao_calca[tonumber(sheet.leggings) or 0]+protecao_botas[tonumber(sheet.boots) or 0];
 			]]>
 		</event>
 	</dataLink>

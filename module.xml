@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module sdkVersion="3.5" compilationDate="30072022012702" sdkApiVersion="86" originalPluginFileName="Ficha_Minecraft.rpk" compilationDigest="8a9f00d06763b8df3e13d77a5355719da4918819">
+<module sdkVersion="3.7b" compilationDate="30072022012702" sdkApiVersion="86" originalPluginFileName="Ficha_Minecraft.rpk" compilationDigest="8a9f00d06763b8df3e13d77a5355719da4918819">
     <!--The "id" identifies your plugin globally. Must be unique, must contain only alphanumeric characters, underlines and dots and must contain at least 5 characters and a maximum of 40. Once set the ID, you should not change it;)-->
-    <id>Ficha_Minecraft_Drag</id>
+    <id>krampus.ficha.minecraft</id>
     <!--"version" is the version of your plugin. When you release a new version of your module, change here =)-->
-    <version>1.2</version>
-    <name>Ficha para mesa de minecraft do tk</name>
-    <description>Uma Ficha feita para deixar a minha mesa de mine mais legal</description>
-    <author>tkplayer</author>
-    <site>rrpg://Minecraft+-+New+World</site>
-    <contact>tk4500#9999</contact>
-    <dataTypes>
-        <dataType title="Ficha de Minecraft" name="fmr_mine" lfmFile="Ficha.lfm">rrpg.minecraft</dataType>
-    </dataTypes>
+    <version>1.0</version>
+    
+    <info lang="pt-BR">
+        <!--Informações do plugin na língua "pt-BR". Você pode ter várias tags "info", uma para cada tradução que quiser.-->
+        <name>Plugin de Minecraft</name>
+        <description>Um Plugin feito para ajudar jogadores e mestres a usar o sistema exotico do Minecraft em um rpg de mesa</description>
+        <author>Krampus (og:tkplayer)</author>
+        <site>linktr.ee/umKrampus</site>
+        <contact>@umKrampus</contact>
+    </info>
 </module>

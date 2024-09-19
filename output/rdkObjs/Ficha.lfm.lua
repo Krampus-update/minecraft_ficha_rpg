@@ -12,7 +12,7 @@ local function constructNew_fmr_mine()
     local self = obj;
     local sheet = nil;
 
-    rawset(obj, "_oldSetNodeObjectFunction", rawget(obj, "setNodeObject"));
+    rawset(obj, "_oldSetNodeObjectFunction", obj.setNodeObject);
 
     function obj:setNodeObject(nodeObject)
         sheet = nodeObject;
@@ -27,8 +27,8 @@ local function constructNew_fmr_mine()
     _gui_assignInitialParentForForm(obj.handle);
     obj:beginUpdate();
     obj:setFormType("sheetTemplate");
-    obj:setDataType("rrpg.minecraft");
-    obj:setTitle("Ficha de Minecraft");
+    obj:setDataType("Krampus.minecraft");
+    obj:setTitle("Ficha de Explorador (Minecraft)");
     obj:setName("fmr_mine");
 
     obj.image1 = GUI.fromHandle(_obj_newObject("image"));
@@ -141,15 +141,17 @@ local function constructNew_fmr_mine()
 
     obj.button1 = GUI.fromHandle(_obj_newObject("button"));
     obj.button1:setParent(obj.layout3);
+    obj.button1:setCursor("handPoint");
     obj.button1:setOpacity(0);
     obj.button1:setTop(3);
     obj.button1:setName("button1");
     obj.button1:setHeight(30);
     obj.button1:setWidth(20);
-    obj.button1:setLeft(2);
+    obj.button1:setLeft(3);
 
     obj.button2 = GUI.fromHandle(_obj_newObject("button"));
     obj.button2:setParent(obj.layout3);
+    obj.button2:setCursor("handPoint");
     obj.button2:setOpacity(0);
     obj.button2:setTop(3);
     obj.button2:setName("button2");
@@ -159,15 +161,17 @@ local function constructNew_fmr_mine()
 
     obj.button3 = GUI.fromHandle(_obj_newObject("button"));
     obj.button3:setParent(obj.layout3);
+    obj.button3:setCursor("handPoint");
     obj.button3:setOpacity(0);
     obj.button3:setTop(39);
     obj.button3:setName("button3");
     obj.button3:setHeight(30);
     obj.button3:setWidth(20);
-    obj.button3:setLeft(2);
+    obj.button3:setLeft(3);
 
     obj.button4 = GUI.fromHandle(_obj_newObject("button"));
     obj.button4:setParent(obj.layout3);
+    obj.button4:setCursor("handPoint");
     obj.button4:setOpacity(0);
     obj.button4:setTop(39);
     obj.button4:setName("button4");
@@ -177,15 +181,17 @@ local function constructNew_fmr_mine()
 
     obj.button5 = GUI.fromHandle(_obj_newObject("button"));
     obj.button5:setParent(obj.layout3);
+    obj.button5:setCursor("handPoint");
     obj.button5:setOpacity(0);
     obj.button5:setTop(75);
     obj.button5:setName("button5");
     obj.button5:setHeight(30);
     obj.button5:setWidth(20);
-    obj.button5:setLeft(2);
+    obj.button5:setLeft(3);
 
     obj.button6 = GUI.fromHandle(_obj_newObject("button"));
     obj.button6:setParent(obj.layout3);
+    obj.button6:setCursor("handPoint");
     obj.button6:setOpacity(0);
     obj.button6:setTop(75);
     obj.button6:setName("button6");
@@ -195,15 +201,17 @@ local function constructNew_fmr_mine()
 
     obj.button7 = GUI.fromHandle(_obj_newObject("button"));
     obj.button7:setParent(obj.layout3);
+    obj.button7:setCursor("handPoint");
     obj.button7:setOpacity(0);
     obj.button7:setTop(111);
     obj.button7:setName("button7");
     obj.button7:setHeight(30);
     obj.button7:setWidth(20);
-    obj.button7:setLeft(2);
+    obj.button7:setLeft(3);
 
     obj.button8 = GUI.fromHandle(_obj_newObject("button"));
     obj.button8:setParent(obj.layout3);
+    obj.button8:setCursor("handPoint");
     obj.button8:setOpacity(0);
     obj.button8:setTop(111);
     obj.button8:setName("button8");
@@ -261,7 +269,7 @@ local function constructNew_fmr_mine()
     obj.image11:setEditable(true);
     obj.image11:setStyle("autoFit");
     obj.image11:setSRC("Ficha/img/avatar.png");
-    lfm_setPropAsString(obj.image11, "animate",  "true");
+    obj.image11.animate = true;
     obj.image11:setName("image11");
 
     obj.layout4 = GUI.fromHandle(_obj_newObject("layout"));
@@ -788,164 +796,233 @@ local function constructNew_fmr_mine()
     obj.dataLink9:setName("dataLink9");
 
     obj._e_event0 = obj.button1:addEventListener("onClick",
-        function (_)
+        function (event)
             sheet.helmet = (tonumber(sheet.helmet) or 0) - 1;
             		if 1 > sheet.helmet then
             		sheet.helmet = 1;
             		end;
-        end, obj);
+        end);
 
     obj._e_event1 = obj.button2:addEventListener("onClick",
-        function (_)
+        function (event)
             sheet.helmet = (tonumber(sheet.helmet) or 0) + 1;
             		if sheet.helmet > 8 then
             		sheet.helmet = 8;
             		end;
-        end, obj);
+        end);
 
     obj._e_event2 = obj.button3:addEventListener("onClick",
-        function (_)
+        function (event)
             sheet.chestplate = (tonumber(sheet.chestplate) or 0)  - 1;
             		if 1 > sheet.chestplate then
             		sheet.chestplate = 1;
             		end;
-        end, obj);
+        end);
 
     obj._e_event3 = obj.button4:addEventListener("onClick",
-        function (_)
+        function (event)
             sheet.chestplate = (tonumber(sheet.chestplate) or 0) + 1;
             		if sheet.chestplate > 8 then
             		sheet.chestplate = 8;
             		end;
-        end, obj);
+        end);
 
     obj._e_event4 = obj.button5:addEventListener("onClick",
-        function (_)
+        function (event)
             sheet.leggings = (tonumber(sheet.leggings) or 0) - 1;
             		if 1 > sheet.leggings then
             		sheet.leggings = 1;
             		end;
-        end, obj);
+        end);
 
     obj._e_event5 = obj.button6:addEventListener("onClick",
-        function (_)
+        function (event)
             sheet.leggings = (tonumber(sheet.leggings) or 0) + 1;
             		if sheet.leggings > 7 then
             		sheet.leggings = 7;
             		end;
-        end, obj);
+        end);
 
     obj._e_event6 = obj.button7:addEventListener("onClick",
-        function (_)
+        function (event)
             sheet.boots = (tonumber(sheet.boots) or 0) - 1;
             		if 1 > sheet.boots then
             		sheet.boots = 1;
             		end;
-        end, obj);
+        end);
 
     obj._e_event7 = obj.button8:addEventListener("onClick",
-        function (_)
+        function (event)
             sheet.boots = (tonumber(sheet.boots) or 0) + 1;
             		if sheet.boots > 7 then
             		sheet.boots = 7;
             		end;
-        end, obj);
+        end);
 
     obj._e_event8 = obj.dataLink1:addEventListener("onChange",
-        function (_, field, oldValue, newValue)
+        function (field, oldValue, newValue)
             local lp = tonumber(sheet.vida)
             			if 0 > lp then
-            			sheet.vida = 0;
+            				sheet.vida = 0;
             			end;
             			sheet.vid = "/Ficha/heart/" ..lp.. ".png";
             			local pj = Firecast.getPersonagemDe(sheet);
             			pj.dono:requestSetBarValue(1, lp);
-        end, obj);
+        end);
 
     obj._e_event9 = obj.dataLink2:addEventListener("onChange",
-        function (_, field, oldValue, newValue)
+        function (field, oldValue, newValue)
             hunger = tonumber(sheet.fome);
             			if sat > hunger then
-            			sat = hunger
+            				sat = hunger
             			end;
             			if 0 > hunger then
-            			sheet.fome = 0;
+            				sheet.fome = 0;
             			end;
             			sheet.hun = "/Ficha/hunger/" ..hunger.. ".png";
             			local pj = Firecast.getPersonagemDe(sheet);
             			pj.dono:requestSetBarValue(2, hunger);
             			pj.dono:requestSetBarValue(3, sat);
-        end, obj);
+        end);
 
     obj._e_event10 = obj.dataLink3:addEventListener("onChange",
-        function (_, field, oldValue, newValue)
+        function (field, oldValue, newValue)
             sat = tonumber(sheet.saturacao);
             			if sat > hunger then
-            			sat = hunger
+            				sat = hunger
             			end;
             			if 0 > sat then
-            			sheet.saturacao = 0;
+            				sheet.saturacao = 0;
             			end;
             			sheet.sat = "Ficha/saturation/" ..sat.. ".png";
             			local pj = Firecast.getPersonagemDe(sheet);
             			pj.dono:requestSetBarValue(2, hunger);
             			pj.dono:requestSetBarValue(3, sat);
-        end, obj);
+        end);
 
     obj._e_event11 = obj.dataLink4:addEventListener("onChange",
-        function (_, field, oldValue, newValue)
+        function (field, oldValue, newValue)
             local prot = tonumber(sheet.protecao)
             			sheet.prt = "/Ficha/armor/" ..prot.. ".png";
-        end, obj);
+        end);
 
     obj._e_event12 = obj.dataLink5:addEventListener("onChange",
-        function (_, field, oldValue, newValue)
-            helmets = {"empty_armor_slot_helmet.png","leather_helmet.png","golden_helmet.png","chainmail_helmet.png","iron_helmet.png","diamond_helmet.png","netherite_helmet.png","turtle_helmet.png"};
-            		phelm = {0,1,2,2,2,3,3,2}
-            		for i=1, 8,1 do
-            		helmets[i] = "/Ficha/img/Armor/"..helmets[i];
-            		end
-            		sheet.head = helmets[tonumber(sheet.helmet)]
-            		sheet.protecao = phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
-        end, obj);
+        function (field, oldValue, newValue)
+            helmets = {
+            				"empty_armor_slot_helmet.png",
+            				"leather_helmet.png",
+            				"golden_helmet.png",
+            				"chainmail_helmet.png",
+            				"iron_helmet.png",
+            				"diamond_helmet.png",
+            				"netherite_helmet.png",
+            				"turtle_helmet.png"
+            			};
+            			protecao_capacete = {
+            				0,
+            				1,
+            				2,
+            				2,
+            				2,
+            				3,
+            				3,
+            				2
+            			}
+            			for i=1, 8,1 do
+            				helmets[i] = "/Ficha/img/Armor/"..helmets[i];
+            			end
+            			sheet.head = helmets[tonumber(sheet.helmet)]
+            			sheet.protecao = protecao_capacete[tonumber(sheet.helmet) or 0]+protecao_peitoral[tonumber(sheet.chestplate) or 0]+protecao_calca[tonumber(sheet.leggings) or 0]+protecao_botas[tonumber(sheet.boots) or 0];
+        end);
 
     obj._e_event13 = obj.dataLink6:addEventListener("onChange",
-        function (_, field, oldValue, newValue)
-            chestplates = {"empty_armor_slot_chestplate.png","leather_chestplate.png","golden_chestplate.png","chainmail_chestplate.png","iron_chestplate.png","diamond_chestplate.png","netherite_chestplate.png","elytra.png"};
-            		pchest = {0,3,5,5,6,8,8,0}
-            		for i=1,8,1 do
-            		chestplates[i] = "/Ficha/img/Armor/"..chestplates[i];
-            		end;
-            		sheet.shoulders = chestplates[tonumber(sheet.chestplate)]
-            		sheet.protecao = phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
-        end, obj);
+        function (field, oldValue, newValue)
+            chestplates = {
+            				"empty_armor_slot_chestplate.png",
+            				"leather_chestplate.png",
+            				"golden_chestplate.png",
+            				"chainmail_chestplate.png",
+            				"iron_chestplate.png",
+            				"diamond_chestplate.png",
+            				"netherite_chestplate.png",
+            				"elytra.png"
+            			};
+            			protecao_peitoral = {
+            				0,
+            				3,
+            				5,
+            				5,
+            				6,
+            				8,
+            				8,
+            				0
+            			}
+            			for i=1,8,1 do
+            				chestplates[i] = "/Ficha/img/Armor/"..chestplates[i];
+            			end;
+            			sheet.shoulders = chestplates[tonumber(sheet.chestplate)]
+            			sheet.protecao = protecao_capacete[tonumber(sheet.helmet) or 0]+protecao_peitoral[tonumber(sheet.chestplate) or 0]+protecao_calca[tonumber(sheet.leggings) or 0]+protecao_botas[tonumber(sheet.boots) or 0];
+        end);
 
     obj._e_event14 = obj.dataLink7:addEventListener("onChange",
-        function (_, field, oldValue, newValue)
-            leggingss = {"empty_armor_slot_leggings.png","leather_leggings.png","golden_leggings.png","chainmail_leggings.png","iron_leggings.png","diamond_leggings.png","netherite_leggings.png"};
-            		pleg = {0,2,3,4,5,6,6}
-            		for i=1,7,1 do
-            		leggingss[i] = "/Ficha/img/Armor/"..leggingss[i];
-            		end;
-            		sheet.knees = leggingss[tonumber(sheet.leggings)]
-            		sheet.protecao = phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
-        end, obj);
+        function (field, oldValue, newValue)
+            leggingss = {
+            				"empty_armor_slot_leggings.png",
+            				"leather_leggings.png",
+            				"golden_leggings.png",
+            				"chainmail_leggings.png",
+            				"iron_leggings.png",
+            				"diamond_leggings.png",
+            				"netherite_leggings.png"
+            			};
+            			protecao_calca = {
+            				0,
+            				2,
+            				3,
+            				4,
+            				5,
+            				6,
+            				6
+            			}
+            			for i=1,7,1 do
+            			leggingss[i] = "/Ficha/img/Armor/"..leggingss[i];
+            			end;
+            			sheet.knees = leggingss[tonumber(sheet.leggings)]
+            			sheet.protecao = protecao_capacete[tonumber(sheet.helmet) or 0]+protecao_peitoral[tonumber(sheet.chestplate) or 0]+protecao_calca[tonumber(sheet.leggings) or 0]+protecao_botas[tonumber(sheet.boots) or 0];
+        end);
 
     obj._e_event15 = obj.dataLink8:addEventListener("onChange",
-        function (_, field, oldValue, newValue)
-            bootss = {"empty_armor_slot_boots.png","leather_boots.png","golden_boots.png","chainmail_boots.png","iron_boots.png","diamond_boots.png","netherite_boots.png","turtle_boots.png"};
-            		pbot = {0,1,1,1,2,3,3}
-            		for i=1,7,1 do
-            		bootss[i] = "/Ficha/img/Armor/"..bootss[i];
-            		end;
-            		sheet.toes = bootss[tonumber(sheet.boots)]
-            		sheet.protecao = phelm[tonumber(sheet.helmet)]+pchest[tonumber(sheet.chestplate)]+pleg[tonumber(sheet.leggings)]+pbot[tonumber(sheet.boots)];
-        end, obj);
+        function (field, oldValue, newValue)
+            botas = {
+            				"empty_armor_slot_boots.png",
+            				"leather_boots.png",
+            				"golden_boots.png",
+            				"chainmail_boots.png",
+            				"iron_boots.png",
+            				"diamond_boots.png",
+            				"netherite_boots.png",
+            				"turtle_boots.png"
+            			};
+            			protecao_botas = {
+            				0,
+            				1,
+            				1,
+            				1,
+            				2,
+            				3,
+            				3
+            			}
+            			for i=1,7,1 do
+            				botas[i] = "/Ficha/img/Armor/"..botas[i];
+            			end;
+            			sheet.toes = botas[tonumber(sheet.boots)]
+            			sheet.protecao = protecao_capacete[tonumber(sheet.helmet) or 0]+protecao_peitoral[tonumber(sheet.chestplate) or 0]+protecao_calca[tonumber(sheet.leggings) or 0]+protecao_botas[tonumber(sheet.boots) or 0];
+        end);
 
     obj._e_event16 = obj.dataLink9:addEventListener("onChange",
-        function (_, field, oldValue, newValue)
+        function (field, oldValue, newValue)
             self.experiencia.width = sheet.percent;
-        end, obj);
+        end);
 
     function obj:_releaseEvents()
         __o_rrpgObjs.removeEventListenerById(self._e_event16);
@@ -976,83 +1053,83 @@ local function constructNew_fmr_mine()
           self:setNodeDatabase(nil);
         end;
 
-        if self.button4 ~= nil then self.button4:destroy(); self.button4 = nil; end;
-        if self.button3 ~= nil then self.button3:destroy(); self.button3 = nil; end;
-        if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
-        if self.layout4 ~= nil then self.layout4:destroy(); self.layout4 = nil; end;
-        if self.image9 ~= nil then self.image9:destroy(); self.image9 = nil; end;
-        if self.comboBox5 ~= nil then self.comboBox5:destroy(); self.comboBox5 = nil; end;
-        if self.image3 ~= nil then self.image3:destroy(); self.image3 = nil; end;
-        if self.button7 ~= nil then self.button7:destroy(); self.button7 = nil; end;
-        if self.edit9 ~= nil then self.edit9:destroy(); self.edit9 = nil; end;
-        if self.image8 ~= nil then self.image8:destroy(); self.image8 = nil; end;
-        if self.dataLink4 ~= nil then self.dataLink4:destroy(); self.dataLink4 = nil; end;
-        if self.comboBox1 ~= nil then self.comboBox1:destroy(); self.comboBox1 = nil; end;
         if self.image5 ~= nil then self.image5:destroy(); self.image5 = nil; end;
-        if self.edit13 ~= nil then self.edit13:destroy(); self.edit13 = nil; end;
-        if self.image7 ~= nil then self.image7:destroy(); self.image7 = nil; end;
-        if self.layout5 ~= nil then self.layout5:destroy(); self.layout5 = nil; end;
-        if self.edit7 ~= nil then self.edit7:destroy(); self.edit7 = nil; end;
-        if self.hotbar ~= nil then self.hotbar:destroy(); self.hotbar = nil; end;
-        if self.dataLink1 ~= nil then self.dataLink1:destroy(); self.dataLink1 = nil; end;
-        if self.edit12 ~= nil then self.edit12:destroy(); self.edit12 = nil; end;
-        if self.dataLink3 ~= nil then self.dataLink3:destroy(); self.dataLink3 = nil; end;
-        if self.button6 ~= nil then self.button6:destroy(); self.button6 = nil; end;
-        if self.comboBox4 ~= nil then self.comboBox4:destroy(); self.comboBox4 = nil; end;
+        if self.edit4 ~= nil then self.edit4:destroy(); self.edit4 = nil; end;
+        if self.edit10 ~= nil then self.edit10:destroy(); self.edit10 = nil; end;
+        if self.image3 ~= nil then self.image3:destroy(); self.image3 = nil; end;
+        if self.textEditor2 ~= nil then self.textEditor2:destroy(); self.textEditor2 = nil; end;
+        if self.layout3 ~= nil then self.layout3:destroy(); self.layout3 = nil; end;
+        if self.comboBox7 ~= nil then self.comboBox7:destroy(); self.comboBox7 = nil; end;
+        if self.experiencia ~= nil then self.experiencia:destroy(); self.experiencia = nil; end;
         if self.dataLink7 ~= nil then self.dataLink7:destroy(); self.dataLink7 = nil; end;
-        if self.button5 ~= nil then self.button5:destroy(); self.button5 = nil; end;
-        if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
+        if self.label11 ~= nil then self.label11:destroy(); self.label11 = nil; end;
+        if self.edit15 ~= nil then self.edit15:destroy(); self.edit15 = nil; end;
+        if self.image4 ~= nil then self.image4:destroy(); self.image4 = nil; end;
+        if self.dataLink8 ~= nil then self.dataLink8:destroy(); self.dataLink8 = nil; end;
+        if self.edit8 ~= nil then self.edit8:destroy(); self.edit8 = nil; end;
+        if self.edit5 ~= nil then self.edit5:destroy(); self.edit5 = nil; end;
+        if self.dataLink2 ~= nil then self.dataLink2:destroy(); self.dataLink2 = nil; end;
         if self.image2 ~= nil then self.image2:destroy(); self.image2 = nil; end;
         if self.comboBox6 ~= nil then self.comboBox6:destroy(); self.comboBox6 = nil; end;
-        if self.dataLink6 ~= nil then self.dataLink6:destroy(); self.dataLink6 = nil; end;
-        if self.layout3 ~= nil then self.layout3:destroy(); self.layout3 = nil; end;
-        if self.image10 ~= nil then self.image10:destroy(); self.image10 = nil; end;
-        if self.dataLink2 ~= nil then self.dataLink2:destroy(); self.dataLink2 = nil; end;
-        if self.dataLink5 ~= nil then self.dataLink5:destroy(); self.dataLink5 = nil; end;
-        if self.comboBox8 ~= nil then self.comboBox8:destroy(); self.comboBox8 = nil; end;
-        if self.layout1 ~= nil then self.layout1:destroy(); self.layout1 = nil; end;
-        if self.image6 ~= nil then self.image6:destroy(); self.image6 = nil; end;
-        if self.label10 ~= nil then self.label10:destroy(); self.label10 = nil; end;
-        if self.layout2 ~= nil then self.layout2:destroy(); self.layout2 = nil; end;
-        if self.edit14 ~= nil then self.edit14:destroy(); self.edit14 = nil; end;
+        if self.image9 ~= nil then self.image9:destroy(); self.image9 = nil; end;
+        if self.layout4 ~= nil then self.layout4:destroy(); self.layout4 = nil; end;
+        if self.dataLink4 ~= nil then self.dataLink4:destroy(); self.dataLink4 = nil; end;
+        if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
         if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
+        if self.edit14 ~= nil then self.edit14:destroy(); self.edit14 = nil; end;
+        if self.image7 ~= nil then self.image7:destroy(); self.image7 = nil; end;
+        if self.label10 ~= nil then self.label10:destroy(); self.label10 = nil; end;
         if self.comboBox3 ~= nil then self.comboBox3:destroy(); self.comboBox3 = nil; end;
-        if self.edit4 ~= nil then self.edit4:destroy(); self.edit4 = nil; end;
-        if self.dataLink8 ~= nil then self.dataLink8:destroy(); self.dataLink8 = nil; end;
-        if self.label8 ~= nil then self.label8:destroy(); self.label8 = nil; end;
-        if self.edit15 ~= nil then self.edit15:destroy(); self.edit15 = nil; end;
-        if self.label11 ~= nil then self.label11:destroy(); self.label11 = nil; end;
-        if self.label3 ~= nil then self.label3:destroy(); self.label3 = nil; end;
-        if self.edit11 ~= nil then self.edit11:destroy(); self.edit11 = nil; end;
-        if self.textEditor1 ~= nil then self.textEditor1:destroy(); self.textEditor1 = nil; end;
-        if self.image1 ~= nil then self.image1:destroy(); self.image1 = nil; end;
-        if self.label4 ~= nil then self.label4:destroy(); self.label4 = nil; end;
-        if self.label6 ~= nil then self.label6:destroy(); self.label6 = nil; end;
-        if self.edit5 ~= nil then self.edit5:destroy(); self.edit5 = nil; end;
-        if self.textEditor2 ~= nil then self.textEditor2:destroy(); self.textEditor2 = nil; end;
-        if self.edit6 ~= nil then self.edit6:destroy(); self.edit6 = nil; end;
-        if self.experiencia ~= nil then self.experiencia:destroy(); self.experiencia = nil; end;
+        if self.edit9 ~= nil then self.edit9:destroy(); self.edit9 = nil; end;
         if self.dataLink9 ~= nil then self.dataLink9:destroy(); self.dataLink9 = nil; end;
-        if self.label7 ~= nil then self.label7:destroy(); self.label7 = nil; end;
-        if self.button8 ~= nil then self.button8:destroy(); self.button8 = nil; end;
-        if self.inventory ~= nil then self.inventory:destroy(); self.inventory = nil; end;
+        if self.edit2 ~= nil then self.edit2:destroy(); self.edit2 = nil; end;
+        if self.dataLink3 ~= nil then self.dataLink3:destroy(); self.dataLink3 = nil; end;
+        if self.button4 ~= nil then self.button4:destroy(); self.button4 = nil; end;
+        if self.label4 ~= nil then self.label4:destroy(); self.label4 = nil; end;
+        if self.comboBox5 ~= nil then self.comboBox5:destroy(); self.comboBox5 = nil; end;
+        if self.image8 ~= nil then self.image8:destroy(); self.image8 = nil; end;
+        if self.layout5 ~= nil then self.layout5:destroy(); self.layout5 = nil; end;
+        if self.comboBox8 ~= nil then self.comboBox8:destroy(); self.comboBox8 = nil; end;
+        if self.dataLink5 ~= nil then self.dataLink5:destroy(); self.dataLink5 = nil; end;
         if self.label2 ~= nil then self.label2:destroy(); self.label2 = nil; end;
+        if self.button2 ~= nil then self.button2:destroy(); self.button2 = nil; end;
+        if self.edit13 ~= nil then self.edit13:destroy(); self.edit13 = nil; end;
+        if self.image6 ~= nil then self.image6:destroy(); self.image6 = nil; end;
+        if self.comboBox2 ~= nil then self.comboBox2:destroy(); self.comboBox2 = nil; end;
         if self.edit3 ~= nil then self.edit3:destroy(); self.edit3 = nil; end;
-        if self.ender_chest ~= nil then self.ender_chest:destroy(); self.ender_chest = nil; end;
+        if self.button8 ~= nil then self.button8:destroy(); self.button8 = nil; end;
+        if self.label8 ~= nil then self.label8:destroy(); self.label8 = nil; end;
+        if self.button5 ~= nil then self.button5:destroy(); self.button5 = nil; end;
+        if self.inventory ~= nil then self.inventory:destroy(); self.inventory = nil; end;
+        if self.textEditor1 ~= nil then self.textEditor1:destroy(); self.textEditor1 = nil; end;
+        if self.comboBox4 ~= nil then self.comboBox4:destroy(); self.comboBox4 = nil; end;
         if self.layout6 ~= nil then self.layout6:destroy(); self.layout6 = nil; end;
         if self.label5 ~= nil then self.label5:destroy(); self.label5 = nil; end;
+        if self.edit6 ~= nil then self.edit6:destroy(); self.edit6 = nil; end;
+        if self.button3 ~= nil then self.button3:destroy(); self.button3 = nil; end;
+        if self.label3 ~= nil then self.label3:destroy(); self.label3 = nil; end;
+        if self.edit12 ~= nil then self.edit12:destroy(); self.edit12 = nil; end;
+        if self.image1 ~= nil then self.image1:destroy(); self.image1 = nil; end;
         if self.label12 ~= nil then self.label12:destroy(); self.label12 = nil; end;
-        if self.image11 ~= nil then self.image11:destroy(); self.image11 = nil; end;
-        if self.edit8 ~= nil then self.edit8:destroy(); self.edit8 = nil; end;
-        if self.image4 ~= nil then self.image4:destroy(); self.image4 = nil; end;
-        if self.edit2 ~= nil then self.edit2:destroy(); self.edit2 = nil; end;
-        if self.edit10 ~= nil then self.edit10:destroy(); self.edit10 = nil; end;
-        if self.edit16 ~= nil then self.edit16:destroy(); self.edit16 = nil; end;
+        if self.comboBox1 ~= nil then self.comboBox1:destroy(); self.comboBox1 = nil; end;
+        if self.layout1 ~= nil then self.layout1:destroy(); self.layout1 = nil; end;
+        if self.hotbar ~= nil then self.hotbar:destroy(); self.hotbar = nil; end;
         if self.label9 ~= nil then self.label9:destroy(); self.label9 = nil; end;
-        if self.edit1 ~= nil then self.edit1:destroy(); self.edit1 = nil; end;
-        if self.comboBox7 ~= nil then self.comboBox7:destroy(); self.comboBox7 = nil; end;
-        if self.comboBox2 ~= nil then self.comboBox2:destroy(); self.comboBox2 = nil; end;
+        if self.image10 ~= nil then self.image10:destroy(); self.image10 = nil; end;
+        if self.dataLink1 ~= nil then self.dataLink1:destroy(); self.dataLink1 = nil; end;
+        if self.button6 ~= nil then self.button6:destroy(); self.button6 = nil; end;
+        if self.label6 ~= nil then self.label6:destroy(); self.label6 = nil; end;
         if self.layout7 ~= nil then self.layout7:destroy(); self.layout7 = nil; end;
+        if self.ender_chest ~= nil then self.ender_chest:destroy(); self.ender_chest = nil; end;
+        if self.edit7 ~= nil then self.edit7:destroy(); self.edit7 = nil; end;
+        if self.edit11 ~= nil then self.edit11:destroy(); self.edit11 = nil; end;
+        if self.layout2 ~= nil then self.layout2:destroy(); self.layout2 = nil; end;
+        if self.edit1 ~= nil then self.edit1:destroy(); self.edit1 = nil; end;
+        if self.image11 ~= nil then self.image11:destroy(); self.image11 = nil; end;
+        if self.dataLink6 ~= nil then self.dataLink6:destroy(); self.dataLink6 = nil; end;
+        if self.button7 ~= nil then self.button7:destroy(); self.button7 = nil; end;
+        if self.label7 ~= nil then self.label7:destroy(); self.label7 = nil; end;
+        if self.edit16 ~= nil then self.edit16:destroy(); self.edit16 = nil; end;
         self:_oldLFMDestroy();
     end;
 
@@ -1081,10 +1158,11 @@ local _fmr_mine = {
     newEditor = newfmr_mine, 
     new = newfmr_mine, 
     name = "fmr_mine", 
-    dataType = "rrpg.minecraft", 
+    dataType = "Krampus.minecraft", 
     formType = "sheetTemplate", 
     formComponentName = "form", 
-    title = "Ficha de Minecraft", 
+    cacheMode = "none", 
+    title = "Ficha de Explorador (Minecraft)", 
     description=""};
 
 fmr_mine = _fmr_mine;
