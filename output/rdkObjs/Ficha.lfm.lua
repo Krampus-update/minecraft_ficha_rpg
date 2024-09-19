@@ -798,65 +798,65 @@ local function constructNew_fmr_mine()
     obj._e_event0 = obj.button1:addEventListener("onClick",
         function (event)
             sheet.helmet = (tonumber(sheet.helmet) or 0) - 1;
-            		if 1 > sheet.helmet then
-            		sheet.helmet = 1;
-            		end;
+            				if 1 > sheet.helmet then
+            					sheet.helmet = 1;
+            				end;
         end);
 
     obj._e_event1 = obj.button2:addEventListener("onClick",
         function (event)
             sheet.helmet = (tonumber(sheet.helmet) or 0) + 1;
-            		if sheet.helmet > 8 then
-            		sheet.helmet = 8;
-            		end;
+            				if sheet.helmet > 8 then
+            					sheet.helmet = 8;
+            				end;
         end);
 
     obj._e_event2 = obj.button3:addEventListener("onClick",
         function (event)
             sheet.chestplate = (tonumber(sheet.chestplate) or 0)  - 1;
-            		if 1 > sheet.chestplate then
-            		sheet.chestplate = 1;
-            		end;
+            				if 1 > sheet.chestplate then
+            					sheet.chestplate = 1;
+            				end;
         end);
 
     obj._e_event3 = obj.button4:addEventListener("onClick",
         function (event)
             sheet.chestplate = (tonumber(sheet.chestplate) or 0) + 1;
-            		if sheet.chestplate > 8 then
-            		sheet.chestplate = 8;
-            		end;
+            				if sheet.chestplate > 8 then
+            					sheet.chestplate = 8;
+            				end;
         end);
 
     obj._e_event4 = obj.button5:addEventListener("onClick",
         function (event)
             sheet.leggings = (tonumber(sheet.leggings) or 0) - 1;
-            		if 1 > sheet.leggings then
-            		sheet.leggings = 1;
-            		end;
+            				if 1 > sheet.leggings then
+            					sheet.leggings = 1;
+            				end;
         end);
 
     obj._e_event5 = obj.button6:addEventListener("onClick",
         function (event)
             sheet.leggings = (tonumber(sheet.leggings) or 0) + 1;
-            		if sheet.leggings > 7 then
-            		sheet.leggings = 7;
-            		end;
+            				if sheet.leggings > 7 then
+            					sheet.leggings = 7;
+            				end;
         end);
 
     obj._e_event6 = obj.button7:addEventListener("onClick",
         function (event)
             sheet.boots = (tonumber(sheet.boots) or 0) - 1;
-            		if 1 > sheet.boots then
-            		sheet.boots = 1;
-            		end;
+            				if 1 > sheet.boots then
+            					sheet.boots = 1;
+            				end;
         end);
 
     obj._e_event7 = obj.button8:addEventListener("onClick",
         function (event)
             sheet.boots = (tonumber(sheet.boots) or 0) + 1;
-            		if sheet.boots > 7 then
-            		sheet.boots = 7;
-            		end;
+            				if sheet.boots > 7 then
+            					sheet.boots = 7;
+            				end;
         end);
 
     obj._e_event8 = obj.dataLink1:addEventListener("onChange",
