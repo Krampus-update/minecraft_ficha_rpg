@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<style>
+    .button_left{
+                height:30;
+                width:20;
+                left:3;
+    }
+    .button_right{
+                height:30;
+                width:20;
+                left:62;
+    }
+    .armor{
+            height:32;
+            width:32;
+            left:26; 
+    
+    }
+    edit{
+    fontColor:White;
+    fontFamily:Minecraft;
+    transparent:true;
+    fontSize:12;
+    }
+    label{
+    fontColor:White;
+    fontFamily:Minecraft;
+    }
+    comboBox{
+    fontColor:White;
+    fontFamily:Minecraft;
+    transparent:true;
+    }
+    textEditor{
+    fontColor:White;
+    fontFamily:Minecraft;
+    transparent:true;
+    }
+    .xp{
+        fontSize:18;
+        fontColor:#7FFF00;
+        horzTextAlign:center;
+    }
+    .skills{
+    items:{'trading','resource gathering','mining','exploring','farming','combat','taming'};
+    fontSize:14;
+    width:150;
+    }
+    .skilltext{
+        left:150;
+        width:100;
+        fontSize:14;
+    }
+</style>
