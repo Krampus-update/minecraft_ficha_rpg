@@ -2,10 +2,10 @@
 <form name='frmTemplatesMinecraft'>
     <template name='caracteristicaLabelEdit'>
         <label autoSize="true" text='$(text)' align="left"/>
-        <edit align="right" height="$(height)" field="$(field)"/>
+        <edit align="right" height="$(height)" field="$(field)" fontFamily="Minecraft"/>
     </template>
     <template name='caracteristicaLabelEditNumber'>
         <label autoSize="true" text='$(text)' align="left"/>
-        <edit align="right" height="$(height)" field="$(field)" type="number" horzTextAlign="trailing"/>
+        <edit align="right" height="$(height)"  fontFamily="Minecraft" field="$(field)" type="number" horzTextAlign="trailing"/>
     </template>
 </form>

@@ -89,9 +89,9 @@ local function constructNew_fmr_mine()
     obj.edit1:setAlign("right");
     obj.edit1:setHeight(30);
     obj.edit1:setField("nome");
+    obj.edit1:setFontFamily("Minecraft");
     obj.edit1:setName("edit1");
     obj.edit1:setFontColor("White");
-    obj.edit1:setFontFamily("Minecraft");
     obj.edit1:setTransparent(true);
     obj.edit1:setFontSize(12);
 
@@ -114,12 +114,12 @@ local function constructNew_fmr_mine()
     obj.edit2:setParent(obj.layout5);
     obj.edit2:setAlign("right");
     obj.edit2:setHeight(30);
+    obj.edit2:setFontFamily("Minecraft");
     obj.edit2:setField("altura");
     obj.edit2:setType("number");
     obj.edit2:setHorzTextAlign("trailing");
     obj.edit2:setName("edit2");
     obj.edit2:setFontColor("White");
-    obj.edit2:setFontFamily("Minecraft");
     obj.edit2:setTransparent(true);
     obj.edit2:setFontSize(12);
 
@@ -142,12 +142,12 @@ local function constructNew_fmr_mine()
     obj.edit3:setParent(obj.layout6);
     obj.edit3:setAlign("right");
     obj.edit3:setHeight(30);
+    obj.edit3:setFontFamily("Minecraft");
     obj.edit3:setField("peso");
     obj.edit3:setType("number");
     obj.edit3:setHorzTextAlign("trailing");
     obj.edit3:setName("edit3");
     obj.edit3:setFontColor("White");
-    obj.edit3:setFontFamily("Minecraft");
     obj.edit3:setTransparent(true);
     obj.edit3:setFontSize(12);
 
@@ -170,12 +170,12 @@ local function constructNew_fmr_mine()
     obj.edit4:setParent(obj.layout7);
     obj.edit4:setAlign("right");
     obj.edit4:setHeight(30);
+    obj.edit4:setFontFamily("Minecraft");
     obj.edit4:setField("idade");
     obj.edit4:setType("number");
     obj.edit4:setHorzTextAlign("trailing");
     obj.edit4:setName("edit4");
     obj.edit4:setFontColor("White");
-    obj.edit4:setFontFamily("Minecraft");
     obj.edit4:setTransparent(true);
     obj.edit4:setFontSize(12);
 
