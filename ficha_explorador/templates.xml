@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form name='frmTemplatesMinecraft'>
     <template name='caracteristicaLabelEdit'>
-        <label autoSize="true" text='$(text)' align="left"/>
-        <edit align="right" height="$(height)" field="$(field)" fontFamily="Minecraft"/>
+        <layout align='client'>
+            <label autoSize="true" text='$(text)' align="top"/>
+            <edit align="client" max="34" height="$(height)" field="$(field)"/>
+        </layout>
     </template>
     <template name='caracteristicaLabelEditNumber'>
-        <label autoSize="true" text='$(text)' align="left"/>
-        <edit align="right" height="$(height)"  fontFamily="Minecraft" field="$(field)" type="number" horzTextAlign="trailing"/>
+        <layout align='client'>
+            <label autoSize="true" text='$(text)' align="top"/>
+            <edit align="client" height="$(height)" field="$(field)" type="number"/>
+        </layout>
     </template>
 </form>

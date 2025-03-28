@@ -75,53 +75,31 @@ local function constructNew_fmr_mine()
     obj.layout4:setHeight(34);
     obj.layout4:setName("layout4");
 
+    obj.layout5 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout5:setParent(obj.layout4);
+    obj.layout5:setAlign("client");
+    obj.layout5:setName("layout5");
+
     obj.label1 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label1:setParent(obj.layout4);
+    obj.label1:setParent(obj.layout5);
     obj.label1:setAutoSize(true);
     obj.label1:setText("Nome: ");
-    obj.label1:setAlign("left");
+    obj.label1:setAlign("top");
     obj.label1:setName("label1");
     obj.label1:setFontColor("White");
     obj.label1:setFontFamily("Minecraft");
 
     obj.edit1 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit1:setParent(obj.layout4);
-    obj.edit1:setAlign("right");
+    obj.edit1:setParent(obj.layout5);
+    obj.edit1:setAlign("client");
+    obj.edit1:setMax(34);
     obj.edit1:setHeight(30);
     obj.edit1:setField("nome");
-    obj.edit1:setFontFamily("Minecraft");
     obj.edit1:setName("edit1");
     obj.edit1:setFontColor("White");
+    obj.edit1:setFontFamily("Minecraft");
     obj.edit1:setTransparent(true);
     obj.edit1:setFontSize(12);
-
-    obj.layout5 = GUI.fromHandle(_obj_newObject("layout"));
-    obj.layout5:setParent(obj.layout3);
-    obj.layout5:setAlign("top");
-    obj.layout5:setHeight(34);
-    obj.layout5:setName("layout5");
-
-    obj.label2 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label2:setParent(obj.layout5);
-    obj.label2:setAutoSize(true);
-    obj.label2:setText("Altura: ");
-    obj.label2:setAlign("left");
-    obj.label2:setName("label2");
-    obj.label2:setFontColor("White");
-    obj.label2:setFontFamily("Minecraft");
-
-    obj.edit2 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit2:setParent(obj.layout5);
-    obj.edit2:setAlign("right");
-    obj.edit2:setHeight(30);
-    obj.edit2:setFontFamily("Minecraft");
-    obj.edit2:setField("altura");
-    obj.edit2:setType("number");
-    obj.edit2:setHorzTextAlign("trailing");
-    obj.edit2:setName("edit2");
-    obj.edit2:setFontColor("White");
-    obj.edit2:setTransparent(true);
-    obj.edit2:setFontSize(12);
 
     obj.layout6 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout6:setParent(obj.layout3);
@@ -129,55 +107,31 @@ local function constructNew_fmr_mine()
     obj.layout6:setHeight(34);
     obj.layout6:setName("layout6");
 
-    obj.label3 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label3:setParent(obj.layout6);
-    obj.label3:setAutoSize(true);
-    obj.label3:setText("Peso: ");
-    obj.label3:setAlign("left");
-    obj.label3:setName("label3");
-    obj.label3:setFontColor("White");
-    obj.label3:setFontFamily("Minecraft");
-
-    obj.edit3 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit3:setParent(obj.layout6);
-    obj.edit3:setAlign("right");
-    obj.edit3:setHeight(30);
-    obj.edit3:setFontFamily("Minecraft");
-    obj.edit3:setField("peso");
-    obj.edit3:setType("number");
-    obj.edit3:setHorzTextAlign("trailing");
-    obj.edit3:setName("edit3");
-    obj.edit3:setFontColor("White");
-    obj.edit3:setTransparent(true);
-    obj.edit3:setFontSize(12);
-
     obj.layout7 = GUI.fromHandle(_obj_newObject("layout"));
-    obj.layout7:setParent(obj.layout3);
-    obj.layout7:setAlign("top");
-    obj.layout7:setHeight(34);
+    obj.layout7:setParent(obj.layout6);
+    obj.layout7:setAlign("client");
     obj.layout7:setName("layout7");
 
-    obj.label4 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label4:setParent(obj.layout7);
-    obj.label4:setAutoSize(true);
-    obj.label4:setText("Idade: ");
-    obj.label4:setAlign("left");
-    obj.label4:setName("label4");
-    obj.label4:setFontColor("White");
-    obj.label4:setFontFamily("Minecraft");
+    obj.label2 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label2:setParent(obj.layout7);
+    obj.label2:setAutoSize(true);
+    obj.label2:setText("Altura: ");
+    obj.label2:setAlign("top");
+    obj.label2:setName("label2");
+    obj.label2:setFontColor("White");
+    obj.label2:setFontFamily("Minecraft");
 
-    obj.edit4 = GUI.fromHandle(_obj_newObject("edit"));
-    obj.edit4:setParent(obj.layout7);
-    obj.edit4:setAlign("right");
-    obj.edit4:setHeight(30);
-    obj.edit4:setFontFamily("Minecraft");
-    obj.edit4:setField("idade");
-    obj.edit4:setType("number");
-    obj.edit4:setHorzTextAlign("trailing");
-    obj.edit4:setName("edit4");
-    obj.edit4:setFontColor("White");
-    obj.edit4:setTransparent(true);
-    obj.edit4:setFontSize(12);
+    obj.edit2 = GUI.fromHandle(_obj_newObject("edit"));
+    obj.edit2:setParent(obj.layout7);
+    obj.edit2:setAlign("client");
+    obj.edit2:setHeight(30);
+    obj.edit2:setField("altura");
+    obj.edit2:setType("number");
+    obj.edit2:setName("edit2");
+    obj.edit2:setFontColor("White");
+    obj.edit2:setFontFamily("Minecraft");
+    obj.edit2:setTransparent(true);
+    obj.edit2:setFontSize(12);
 
     obj.layout8 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout8:setParent(obj.layout3);
@@ -185,8 +139,72 @@ local function constructNew_fmr_mine()
     obj.layout8:setHeight(34);
     obj.layout8:setName("layout8");
 
+    obj.layout9 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout9:setParent(obj.layout8);
+    obj.layout9:setAlign("client");
+    obj.layout9:setName("layout9");
+
+    obj.label3 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label3:setParent(obj.layout9);
+    obj.label3:setAutoSize(true);
+    obj.label3:setText("Peso: ");
+    obj.label3:setAlign("top");
+    obj.label3:setName("label3");
+    obj.label3:setFontColor("White");
+    obj.label3:setFontFamily("Minecraft");
+
+    obj.edit3 = GUI.fromHandle(_obj_newObject("edit"));
+    obj.edit3:setParent(obj.layout9);
+    obj.edit3:setAlign("client");
+    obj.edit3:setHeight(30);
+    obj.edit3:setField("peso");
+    obj.edit3:setType("number");
+    obj.edit3:setName("edit3");
+    obj.edit3:setFontColor("White");
+    obj.edit3:setFontFamily("Minecraft");
+    obj.edit3:setTransparent(true);
+    obj.edit3:setFontSize(12);
+
+    obj.layout10 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout10:setParent(obj.layout3);
+    obj.layout10:setAlign("top");
+    obj.layout10:setHeight(34);
+    obj.layout10:setName("layout10");
+
+    obj.layout11 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout11:setParent(obj.layout10);
+    obj.layout11:setAlign("client");
+    obj.layout11:setName("layout11");
+
+    obj.label4 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label4:setParent(obj.layout11);
+    obj.label4:setAutoSize(true);
+    obj.label4:setText("Idade: ");
+    obj.label4:setAlign("top");
+    obj.label4:setName("label4");
+    obj.label4:setFontColor("White");
+    obj.label4:setFontFamily("Minecraft");
+
+    obj.edit4 = GUI.fromHandle(_obj_newObject("edit"));
+    obj.edit4:setParent(obj.layout11);
+    obj.edit4:setAlign("client");
+    obj.edit4:setHeight(30);
+    obj.edit4:setField("idade");
+    obj.edit4:setType("number");
+    obj.edit4:setName("edit4");
+    obj.edit4:setFontColor("White");
+    obj.edit4:setFontFamily("Minecraft");
+    obj.edit4:setTransparent(true);
+    obj.edit4:setFontSize(12);
+
+    obj.layout12 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout12:setParent(obj.layout3);
+    obj.layout12:setAlign("top");
+    obj.layout12:setHeight(34);
+    obj.layout12:setName("layout12");
+
     obj.comboBox1 = GUI.fromHandle(_obj_newObject("comboBox"));
-    obj.comboBox1:setParent(obj.layout8);
+    obj.comboBox1:setParent(obj.layout12);
     obj.comboBox1:setAlign("top");
     obj.comboBox1:setHeight(30);
     obj.comboBox1:setField("tendencia");
@@ -196,30 +214,32 @@ local function constructNew_fmr_mine()
     obj.comboBox1:setFontFamily("Minecraft");
     obj.comboBox1:setTransparent(true);
 
-    obj.layout9 = GUI.fromHandle(_obj_newObject("layout"));
-    obj.layout9:setParent(obj.layout1);
-    obj.layout9:setTop(30);
-    obj.layout9:setLeft(340);
-    obj.layout9:setWidth(450);
-    obj.layout9:setHeight(480);
-    obj.layout9:setFrameStyle("/ficha_explorador/frames/inv_white.xml");
-    obj.layout9:setName("layout9");
+    obj.layout13 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout13:setParent(obj.layout1);
+    obj.layout13:setTop(170);
+    obj.layout13:setLeft(340);
+    obj.layout13:setWidth(468);
+    obj.layout13:setHeight(240);
+    obj.layout13:setFrameStyle("/ficha_explorador/frames/inv_white.xml");
+    obj.layout13:setName("layout13");
 
     obj.recordList1 = GUI.fromHandle(_obj_newObject("recordList"));
-    obj.recordList1:setParent(obj.layout9);
+    obj.recordList1:setParent(obj.layout13);
     obj.recordList1:setField("inventario");
     obj.recordList1:setTemplateForm("slot_inv");
+    obj.recordList1:setLayout("horizontalTiles");
     obj.recordList1:setAlign("client");
-    obj.recordList1:setAutoHeight(true);
+    obj.recordList1:setItemHeight(30);
     obj.recordList1:setMinQt(36);
+    obj.recordList1:setAutoHeight(true);
     obj.recordList1:setName("recordList1");
 
-    obj.layout10 = GUI.fromHandle(_obj_newObject("layout"));
-    obj.layout10:setParent(obj);
-    obj.layout10:setName("layout10");
+    obj.layout14 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout14:setParent(obj);
+    obj.layout14:setName("layout14");
 
     obj.label5 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label5:setParent(obj.layout10);
+    obj.label5:setParent(obj.layout14);
     obj.label5:setField("vida");
     obj.label5:setOpacity(0);
     obj.label5:setName("label5");
@@ -227,12 +247,12 @@ local function constructNew_fmr_mine()
     obj.label5:setFontFamily("Minecraft");
 
     obj.dataLink1 = GUI.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink1:setParent(obj.layout10);
+    obj.dataLink1:setParent(obj.layout14);
     obj.dataLink1:setField("vida");
     obj.dataLink1:setName("dataLink1");
 
     obj.label6 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label6:setParent(obj.layout10);
+    obj.label6:setParent(obj.layout14);
     obj.label6:setField("fome");
     obj.label6:setOpacity(0);
     obj.label6:setName("label6");
@@ -240,12 +260,12 @@ local function constructNew_fmr_mine()
     obj.label6:setFontFamily("Minecraft");
 
     obj.dataLink2 = GUI.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink2:setParent(obj.layout10);
+    obj.dataLink2:setParent(obj.layout14);
     obj.dataLink2:setField("fome");
     obj.dataLink2:setName("dataLink2");
 
     obj.label7 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label7:setParent(obj.layout10);
+    obj.label7:setParent(obj.layout14);
     obj.label7:setField("saturacao");
     obj.label7:setOpacity(0);
     obj.label7:setName("label7");
@@ -253,12 +273,12 @@ local function constructNew_fmr_mine()
     obj.label7:setFontFamily("Minecraft");
 
     obj.dataLink3 = GUI.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink3:setParent(obj.layout10);
+    obj.dataLink3:setParent(obj.layout14);
     obj.dataLink3:setField("saturacao");
     obj.dataLink3:setName("dataLink3");
 
     obj.label8 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label8:setParent(obj.layout10);
+    obj.label8:setParent(obj.layout14);
     obj.label8:setField("percent");
     obj.label8:setOpacity(0);
     obj.label8:setName("label8");
@@ -266,7 +286,7 @@ local function constructNew_fmr_mine()
     obj.label8:setFontFamily("Minecraft");
 
     obj.dataLink4 = GUI.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink4:setParent(obj.layout10);
+    obj.dataLink4:setParent(obj.layout14);
     obj.dataLink4:setField("percent");
     obj.dataLink4:setName("dataLink4");
 
@@ -335,9 +355,11 @@ local function constructNew_fmr_mine()
         if self.layout8 ~= nil then self.layout8:destroy(); self.layout8 = nil; end;
         if self.label2 ~= nil then self.label2:destroy(); self.label2 = nil; end;
         if self.edit4 ~= nil then self.edit4:destroy(); self.edit4 = nil; end;
+        if self.layout11 ~= nil then self.layout11:destroy(); self.layout11 = nil; end;
         if self.edit3 ~= nil then self.edit3:destroy(); self.edit3 = nil; end;
         if self.label8 ~= nil then self.label8:destroy(); self.label8 = nil; end;
         if self.layout3 ~= nil then self.layout3:destroy(); self.layout3 = nil; end;
+        if self.layout12 ~= nil then self.layout12:destroy(); self.layout12 = nil; end;
         if self.label5 ~= nil then self.label5:destroy(); self.label5 = nil; end;
         if self.layout6 ~= nil then self.layout6:destroy(); self.layout6 = nil; end;
         if self.layout9 ~= nil then self.layout9:destroy(); self.layout9 = nil; end;
@@ -357,10 +379,12 @@ local function constructNew_fmr_mine()
         if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
         if self.edit2 ~= nil then self.edit2:destroy(); self.edit2 = nil; end;
         if self.layout2 ~= nil then self.layout2:destroy(); self.layout2 = nil; end;
-        if self.dataLink3 ~= nil then self.dataLink3:destroy(); self.dataLink3 = nil; end;
+        if self.layout13 ~= nil then self.layout13:destroy(); self.layout13 = nil; end;
         if self.label4 ~= nil then self.label4:destroy(); self.label4 = nil; end;
         if self.edit1 ~= nil then self.edit1:destroy(); self.edit1 = nil; end;
+        if self.dataLink3 ~= nil then self.dataLink3:destroy(); self.dataLink3 = nil; end;
         if self.layout5 ~= nil then self.layout5:destroy(); self.layout5 = nil; end;
+        if self.layout14 ~= nil then self.layout14:destroy(); self.layout14 = nil; end;
         if self.label7 ~= nil then self.label7:destroy(); self.label7 = nil; end;
         self:_oldLFMDestroy();
     end;

@@ -49,4 +49,12 @@
             <source url="inv_slot.png" left="128" top="64" right="192" bottom="128"/>
         </image>
     </draw>
+    <regions>
+        <region name="slot" left="5" top="5" right="25" bottom="25">  
+            <anchors left="true" top="true" right="true" bottom="true"/>
+        </region>
+        <region name="quantity" left="18" top="18" right="30" bottom="30">  
+            <anchors left="false" top="false" right="true" bottom="true"/>
+        </region>
+    </regions>
 </frame>    

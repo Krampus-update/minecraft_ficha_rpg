@@ -3,6 +3,9 @@
 <form formType="sheetTemplate" dataType="Krampus.minecraft" title="Ficha de Explorador (Minecraft)" name="fmr_mine">
 	<import file='templates.xml'/>
 	<import file='styles.xml'/>
+	<style><!-- css-->
+		
+	</style>
 	<layout align='client' frameStyle="frames/inv_white.xml" padding="{left=13,right=13,top=13,bottom=13}">
 		<!-- Foto Personagem-->
 		<layout>
@@ -27,9 +30,8 @@
 			</layout>
 		</layout>
 		<!--supostamente vai ser o inventario-->
-		<layout top="30" left="340" width="450" height="480" frameStyle="frames/inv_white.xml">
-			<recordList field='inventario' templateForm='slot_inv'
-					align='client' autoHeight='true' minQt="36"/>
+		<layout top="170" left="340" width="468" height="240" frameStyle="frames/inv_white.xml">
+			<recordList field='inventario' templateForm='slot_inv' layout="horizontalTiles" align='client' itemHeight="30" minQt="36" autoHeight="true"/>
 		</layout>
 	</layout>
 	<!-- apenas para organização, não deleta imbecil (y)-->
@@ -37,7 +39,7 @@
 		<label field="vida" opacity="0" />
 		<dataLink field="vida">
 			<event name="onChange">
-				<![CDATA[
+				<!--lua-->
 				local lp = tonumber(sheet.vida)
 				if 0 > lp then
 					sheet.vida = 0;
@@ -45,13 +47,12 @@
 				sheet.vid = "/heart/" ..lp.. ".png";
 				local pj = Firecast.getPersonagemDe(sheet);
 				pj.dono:requestSetBarValue(1, lp);
-				]]>
+				<!--lua-->
 			</event>
 		</dataLink>
 		<label field="fome" opacity="0" />
 		<dataLink field="fome">
 			<event name="onChange">
-				<![CDATA[
 				hunger = tonumber(sheet.fome);
 				if sat > hunger then
 					sat = hunger
@@ -63,13 +64,11 @@
 				local pj = Firecast.getPersonagemDe(sheet);
 				pj.dono:requestSetBarValue(2, hunger);
 				pj.dono:requestSetBarValue(3, sat);			
-				]]>
 			</event>
 		</dataLink>
 		<label field="saturacao" opacity="0" />
 		<dataLink field="saturacao">
 			<event name="onChange">
-				<![CDATA[
 				sat = tonumber(sheet.saturacao);
 				if sat > hunger then
 					sat = hunger
@@ -81,15 +80,12 @@
 				local pj = Firecast.getPersonagemDe(sheet);
 				pj.dono:requestSetBarValue(2, hunger);
 				pj.dono:requestSetBarValue(3, sat);
-				]]>
 			</event>
 		</dataLink>
 		<label field="percent" opacity="0" />
 		<dataLink field="percent">
 			<event name="onChange">
-				<![CDATA[
 						self.experiencia.width = sheet.percent;
-				]]>
 			</event>
 		</dataLink>
 	</layout>

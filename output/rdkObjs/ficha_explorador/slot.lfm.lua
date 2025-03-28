@@ -7,7 +7,7 @@ require("ndb.lua");
 require("locale.lua");
 local __o_Utils = require("utils.lua");
 
-local function constructNew_item_slot()
+local function constructNew_slot_inv()
     local obj = GUI.fromHandle(_obj_newObject("form"));
     local self = obj;
     local sheet = nil;
@@ -26,26 +26,41 @@ local function constructNew_item_slot()
 
     _gui_assignInitialParentForForm(obj.handle);
     obj:beginUpdate();
-    obj:setName("item_slot");
-    obj:setWidth(36);
-    obj:setHeight(36);
+    obj:setDataType("slotInv");
+    obj:setName("slot_inv");
+
+    obj.layout1 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout1:setParent(obj);
+    obj.layout1:setAlign("left");
+    obj.layout1:setWidth(30);
+    obj.layout1:setFrameStyle("/ficha_explorador/frames/inv_slot.xml");
+    obj.layout1:setName("layout1");
+
+    obj.layout2 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout2:setParent(obj.layout1);
+    obj.layout2:setAlign("client");
+    obj.layout2:setFrameRegion("slot");
+    obj.layout2:setName("layout2");
 
     obj.image1 = GUI.fromHandle(_obj_newObject("image"));
-    obj.image1:setParent(obj);
+    obj.image1:setParent(obj.layout2);
+    obj.image1:setAlign("client");
     obj.image1:setStyle("stretch");
     obj.image1:setField("slot");
     obj.image1:setName("image1");
-    obj.image1:setMargins({left=1, right=3, top=1, bottom=3});
-    obj.image1:setWidth(32);
-    obj.image1:setHeight(32);
-    obj.image1:setSRC("/item/void.png");
+
+    obj.layout3 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout3:setParent(obj.layout1);
+    obj.layout3:setAlign("client");
+    obj.layout3:setFrameRegion("num");
+    obj.layout3:setName("layout3");
 
     obj.label1 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label1:setParent(obj);
+    obj.label1:setParent(obj.layout3);
     obj.label1:setHorzTextAlign("trailing");
     obj.label1:setTop(20);
     obj.label1:setWidth(32);
-    obj.label1:setText("69");
+    obj.label1:setText("");
     obj.label1:setFontColor("#3D3D3F");
     obj.label1:setFontFamily("Minecraft");
     obj.label1:setField("num");
@@ -55,11 +70,11 @@ local function constructNew_item_slot()
     obj.label1:setAutoSize(true);
 
     obj.label2 = GUI.fromHandle(_obj_newObject("label"));
-    obj.label2:setParent(obj);
+    obj.label2:setParent(obj.layout3);
     obj.label2:setHorzTextAlign("trailing");
     obj.label2:setTop(18);
     obj.label2:setWidth(30);
-    obj.label2:setText("69");
+    obj.label2:setText("");
     obj.label2:setFontColor("#FBFBFB");
     obj.label2:setFontFamily("Minecraft");
     obj.label2:setField("num");
@@ -69,7 +84,7 @@ local function constructNew_item_slot()
     obj.label2:setAutoSize(true);
 
     obj.button1 = GUI.fromHandle(_obj_newObject("button"));
-    obj.button1:setParent(obj);
+    obj.button1:setParent(obj.layout1);
     obj.button1:setWidth(34);
     obj.button1:setHeight(34);
     obj.button1:setOpacity(0);
@@ -77,8 +92,7 @@ local function constructNew_item_slot()
 
     obj._e_event0 = obj.button1:addEventListener("onStartDrag",
         function (drag, x, y, event)
-            drag:addData("slot", sheet.slot);
-            			drag:addData("valor", sheet.num);
+            drag:addData("item", {sheet.slot, sheet.num});
             			sheet.num = "";
             			sheet.slot = "/item/void.png";
         end);
@@ -86,10 +100,10 @@ local function constructNew_item_slot()
     obj._e_event1 = obj.button1:addEventListener("onStartDrop",
         function (drop, x, y, drag, event)
             if sheet.slot == "/item/void.png" then
-            				drop:addAction("slot", 
-            				function(item)
-            					sheet.slot = item;
-            					sheet.num = drag:getData("valor");
+            				drop:addAction("item",   
+            				function(value)
+            					sheet.slot = value[1];
+                                sheet.num = value[2];
             				end);
             			end;
         end);
@@ -181,9 +195,12 @@ local function constructNew_item_slot()
         end;
 
         if self.label2 ~= nil then self.label2:destroy(); self.label2 = nil; end;
+        if self.layout2 ~= nil then self.layout2:destroy(); self.layout2 = nil; end;
         if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
         if self.image1 ~= nil then self.image1:destroy(); self.image1 = nil; end;
+        if self.layout3 ~= nil then self.layout3:destroy(); self.layout3 = nil; end;
         if self.button1 ~= nil then self.button1:destroy(); self.button1 = nil; end;
+        if self.layout1 ~= nil then self.layout1:destroy(); self.layout1 = nil; end;
         self:_oldLFMDestroy();
     end;
 
@@ -192,13 +209,13 @@ local function constructNew_item_slot()
     return obj;
 end;
 
-function newitem_slot()
+function newslot_inv()
     local retObj = nil;
     __o_rrpgObjs.beginObjectsLoading();
 
     __o_Utils.tryFinally(
       function()
-        retObj = constructNew_item_slot();
+        retObj = constructNew_slot_inv();
       end,
       function()
         __o_rrpgObjs.endObjectsLoading();
@@ -208,18 +225,19 @@ function newitem_slot()
     return retObj;
 end;
 
-local _item_slot = {
-    newEditor = newitem_slot, 
-    new = newitem_slot, 
-    name = "item_slot", 
-    dataType = "", 
+local _slot_inv = {
+    newEditor = newslot_inv, 
+    new = newslot_inv, 
+    name = "slot_inv", 
+    dataType = "slotInv", 
     formType = "undefined", 
     formComponentName = "form", 
     cacheMode = "none", 
     title = "", 
     description=""};
 
-item_slot = _item_slot;
-Firecast.registrarForm(_item_slot);
+slot_inv = _slot_inv;
+Firecast.registrarForm(_slot_inv);
+Firecast.registrarDataType(_slot_inv);
 
-return _item_slot;
+return _slot_inv;

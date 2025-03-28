@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form name="item_slot" width="36" height="36">
-	<style>
-			  .item
-			  {
-				margins: {left=1, right=3, top=1, bottom=3};
-				width:32;
-				height:32;
-				src:/item/void.png;
-				
-			  } 
+<form dataType='slotInv' name='slot_inv'>
+    <layout align='left' width="30" frameStyle="frames/inv_slot.xml">
+        <style>
 			  .numbera
 			  {
 				fontSize:16;
 				fontStyle:bold;
 				autoSize:true;
 			  }
-	</style>
-	<image style="stretch" class="item" field="slot"/>
-	<label horzTextAlign="trailing" top="20" width="32" class="numbera" text="69" fontColor="#3D3D3F" fontFamily="Minecraft" field="num"/>
-	<label horzTextAlign="trailing" top="18" width="30" class="numbera" text="69" fontColor="#FBFBFB" fontFamily="Minecraft" field="num"/>
-	<button width="34" height="34" opacity="0">
-		<event name="onStartDrag"><![CDATA[
-			drag:addData("slot", sheet.slot);
-			drag:addData("valor", sheet.num);
+        </style>
+
+        <!--visual item e quantidade-->
+        <layout align='client' frameRegion="slot">
+            <image align="client" style="stretch" field="slot"/>
+        </layout>
+        <layout align='client' frameRegion="num">
+            <label horzTextAlign="trailing" top="20" width="32" class="numbera" text="" fontColor="#3D3D3F" fontFamily="Minecraft" field="num"/>
+            <label horzTextAlign="trailing" top="18" width="30" class="numbera" text="" fontColor="#FBFBFB" fontFamily="Minecraft" field="num"/>
+        </layout>
+        <!-- Logica dos items e quantidade-->
+        <button width="34" height="34" opacity="0">
+            <event name="onStartDrag"><![CDATA[
+			drag:addData("item", {sheet.slot, sheet.num});
 			sheet.num = "";
 			sheet.slot = "/item/void.png";
 		]]>
-		</event>
-		<event name="onStartDrop">
+
+            </event>
+            <event name="onStartDrop"><![CDATA[
 			if sheet.slot == "/item/void.png" then
-				drop:addAction("slot", 
-				function(item)
-					sheet.slot = item;
-					sheet.num = drag:getData("valor");
+				drop:addAction("item",   
+				function(value)
+					sheet.slot = value[1];
+                    sheet.num = value[2];
 				end);
 			end;
-		</event>
-		<event name="onClick">
-			<![CDATA[
+		]]>            </event>
+            <event name="onClick">
+                <![CDATA[
 			if sheet.slot == "/item/void.png" then
 				Dialogs.choose("Escrever o nome ou o Link", {"Nome", "Link"}, 
 				function(selected,opc)
@@ -106,7 +106,8 @@
 				true);
 			end
 			]]>
-		</event>
-	</button>
+            </event>
+        </button>
 
+    </layout>
 </form>
