@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form dataType='slotInv' name='slot_inv'>
-    <layout align='left' width="30" frameStyle="frames/inv_slot.xml">
-        <style>
-			  .numbera
-			  {
-				fontSize:16;
-				fontStyle:bold;
-				autoSize:true;
+	<layout align='left' width="30" frameStyle="frames/inv_slot.xml" cursor="handPoint">
+		<style>
+			  .numbera {
+				fontSize: 16;
+				fontStyle: bold;
+				autoSize: true;
 			  }
-        </style>
-
-        <!--visual item e quantidade-->
-        <layout align='client' frameRegion="slot">
-            <image align="client" style="stretch" field="slot"/>
-        </layout>
-        <layout align='client' frameRegion="num">
-            <label horzTextAlign="trailing" top="20" width="32" class="numbera" text="" fontColor="#3D3D3F" fontFamily="Minecraft" field="num"/>
-            <label horzTextAlign="trailing" top="18" width="30" class="numbera" text="" fontColor="#FBFBFB" fontFamily="Minecraft" field="num"/>
-        </layout>
-        <!-- Logica dos items e quantidade-->
-        <button width="34" height="34" opacity="0">
-            <event name="onStartDrag"><![CDATA[
+		</style>
+		<!--visual item e quantidade-->
+		<layout align='client' frameRegion="slot">
+			<image align="client" style="stretch" field="slot" url="/item/void.png"/>
+		</layout>
+		<layout align='client' frameRegion="num">
+			<label horzTextAlign="trailing" top="20" width="32" class="numbera" text="" fontColor="#3D3D3F" fontFamily="Minecraft" field="num" format="%d"/>
+			<label horzTextAlign="trailing" top="18" width="30" class="numbera" text="" fontColor="#FBFBFB" fontFamily="Minecraft" field="num" format="%d"/>
+			<dataLink fields="{'num','slot'}" defaultValues="{'0','/item/void.png'}"/>
+	
+		</layout>
+		<!-- Logica dos items e quantidade-->
+		<button width="34" height="34" opacity="0">
+			<event name="onStartDrag">
 			drag:addData("item", {sheet.slot, sheet.num});
 			sheet.num = "";
 			sheet.slot = "/item/void.png";
-		]]>
-
-            </event>
-            <event name="onStartDrop"><![CDATA[
+			</event>
+			<event name="onStartDrop">				
 			if sheet.slot == "/item/void.png" then
 				drop:addAction("item",   
 				function(value)
@@ -35,79 +33,66 @@
                     sheet.num = value[2];
 				end);
 			end;
-		]]>            </event>
-            <event name="onClick">
-                <![CDATA[
-			if sheet.slot == "/item/void.png" then
-				Dialogs.choose("Escrever o nome ou o Link", {"Nome", "Link"}, 
-				function(selected,opc)
-					if selected then
-						if opc == 1 then
-							Dialogs.inputQuery("nome do item","","",
-							function(slot)
-								sheet.slot = "/item/" ..slot..".png";
-								Dialogs.inputQuery("escreva o numero de itens","","",
-								function(numero)
-									num = tonumber(numero);
-									if num == 1 then
-										sheet.num = "";
-									elseif num == 0 then
-										sheet.num = "";
-										sheet.slot = "/item/void.png";
-									else
-										sheet.num = num;
-									end
-								end,
-								function()
-									sheet.num = "";
-								end,
-								true);
-							end);
-						else
-							Dialogs.selectImageURL("/item/void.png",
-							function(url)
-								sheet.slot = url;
-								Dialogs.inputQuery("escreva o numero de itens","","",
-								function(numero)
-									num = tonumber(numero);
-									if num == 1 then
-										sheet.num = "";
-									elseif num == 0 then
-										sheet.num = "";
-										sheet.slot = "/item/void.png";
-									else
-										sheet.num = num;
-									end
-								end,
-								function()
-									sheet.num = "";
-								end,
-								true);
-							end);
-						end
-					end
-				end);
-			else
-				Dialogs.inputQuery("escreva o numero de itens","","",
-				function(numero)
-					num = tonumber(numero);
-					if num == 1 then
-						sheet.num = "";
-					elseif num == 0 then
-						sheet.num = "";
-						sheet.slot = "/item/void.png";
-					else
-						sheet.num = num;
-					end
-				end,
-				function()
-					sheet.num = "";
-				end,
-				true);
+			</event>
+			<event name="onClick">
+			function atualizarSlot(numero, slot)
+			    local num = tonumber(numero)
+			    if num == 1 or num == 0 then
+			        sheet.num = ""
+			        sheet.slot = (num == 0) and "/item/void.png" or slot
+			    else
+			        sheet.num = num
+			    end
 			end
-			]]>
-            </event>
-        </button>
 
-    </layout>
+			function solicitarNumeroItens(callback)
+			    Dialogs.inputQuery("escreva o numero de itens", "", "", 
+			        function(numero)
+			            callback(numero)
+			        end,
+			        function()
+			            sheet.num = ""
+			        end,
+			        true
+			    )
+			end
+
+			function escolherNomeOuLink()
+			    Dialogs.choose("Escrever o nome ou o Link", {"Nome", "Link"}, 
+			        function(selected, opc)
+			            if selected then
+			                if opc == 1 then
+			                    Dialogs.inputQuery("nome do item", "", "", 
+			                        function(slot)
+			                            sheet.slot = "/item/" .. slot .. ".png"
+			                            solicitarNumeroItens(function(numero)
+			                                atualizarSlot(numero, sheet.slot)
+			                            end)
+			                        end
+			                    )
+			                else
+			                    Dialogs.selectImageURL("/item/void.png", 
+			                        function(url)
+			                            sheet.slot = url
+			                            solicitarNumeroItens(function(numero)
+			                                atualizarSlot(numero, sheet.slot)
+			                            end)
+			                        end
+			                    )
+			                end
+			            end
+			        end
+			    )
+			end
+
+			if sheet.slot == "/item/void.png" or sheet.num == "0" then
+			    escolherNomeOuLink()
+			else
+			    solicitarNumeroItens(function(numero)
+			        atualizarSlot(numero, sheet.slot)
+			    end)
+			end
+			</event>
+		</button>
+	</layout>
 </form>

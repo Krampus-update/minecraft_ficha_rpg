@@ -35,6 +35,21 @@ local function constructNew_fmr_mine()
     obj.frmTemplatesMinecraft:setParent(obj);
     obj.frmTemplatesMinecraft:setName("frmTemplatesMinecraft");
 
+
+			function init()
+				local pj = Firecast.getPersonagemDe(sheet);
+				if pj ~= nil then
+					-- Atualiza a barra de vida 
+					pj:asyncUpdate({bar0Max=20});
+					-- Atualiza a barra de fome 
+					pj:asyncUpdate({bar1Max=20});
+					-- Atualiza a barra de saturação 
+					pj:asyncUpdate({bar2Max=20});
+				end;
+			end
+	
+
+
     obj.layout1 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout1:setParent(obj);
     obj.layout1:setAlign("client");
@@ -259,11 +274,6 @@ local function constructNew_fmr_mine()
     obj.label6:setFontColor("White");
     obj.label6:setFontFamily("Minecraft");
 
-    obj.dataLink2 = GUI.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink2:setParent(obj.layout14);
-    obj.dataLink2:setField("fome");
-    obj.dataLink2:setName("dataLink2");
-
     obj.label7 = GUI.fromHandle(_obj_newObject("label"));
     obj.label7:setParent(obj.layout14);
     obj.label7:setField("saturacao");
@@ -272,10 +282,11 @@ local function constructNew_fmr_mine()
     obj.label7:setFontColor("White");
     obj.label7:setFontFamily("Minecraft");
 
-    obj.dataLink3 = GUI.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink3:setParent(obj.layout14);
-    obj.dataLink3:setField("saturacao");
-    obj.dataLink3:setName("dataLink3");
+    obj.dataLink2 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink2:setParent(obj.layout14);
+    obj.dataLink2:setFields({'fome','saturacao'});
+    obj.dataLink2:setDefaultValues({0,0});
+    obj.dataLink2:setName("dataLink2");
 
     obj.label8 = GUI.fromHandle(_obj_newObject("label"));
     obj.label8:setParent(obj.layout14);
@@ -285,59 +296,48 @@ local function constructNew_fmr_mine()
     obj.label8:setFontColor("White");
     obj.label8:setFontFamily("Minecraft");
 
-    obj.dataLink4 = GUI.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink4:setParent(obj.layout14);
-    obj.dataLink4:setField("percent");
-    obj.dataLink4:setName("dataLink4");
+    obj.dataLink3 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink3:setParent(obj.layout14);
+    obj.dataLink3:setField("percent");
+    obj.dataLink3:setName("dataLink3");
 
     obj._e_event0 = obj.dataLink1:addEventListener("onChange",
         function (field, oldValue, newValue)
-            local lp = tonumber(sheet.vida)
-            				if 0 > lp then
-            					sheet.vida = 0;
-            				end;
-            				sheet.vid = "/heart/" ..lp.. ".png";
-            				local pj = Firecast.getPersonagemDe(sheet);
-            				pj.dono:requestSetBarValue(1, lp);
+            init();
+                            local lp = tonumber(sheet.vida) or 0;
+                            if 0 > lp then
+                                sheet.vida = 0;
+                            end;
+                            sheet.vid = "/heart/" ..lp.. ".png";
+                            local pj = Firecast.getPersonagemDe(sheet); await(pj:asyncUpdate({bar0Val=lp}));
         end);
 
     obj._e_event1 = obj.dataLink2:addEventListener("onChange",
         function (field, oldValue, newValue)
-            hunger = tonumber(sheet.fome);
-            				if sat > hunger then
-            					sat = hunger
+            init();
+                            local hunger = tonumber(sheet.fome) or 0;
+            				local sat = tonumber(sheet.saturacao) or 0;
+            				if hunger > 20 then
+            					hunger = 20;
             				end;
-            				if 0 > hunger then
-            					sheet.fome = 0;
-            				end;
-            				sheet.hun = "/hunger/" ..hunger.. ".png";
-            				local pj = Firecast.getPersonagemDe(sheet);
-            				pj.dono:requestSetBarValue(2, hunger);
-            				pj.dono:requestSetBarValue(3, sat);
+                            if sat > hunger then
+                                sat = hunger
+                            end;
+                            if 0 > hunger then
+                                sheet.fome = 0;
+                            end;
+                            sheet.hun = "/hunger/" ..hunger.. ".png";
+            				sheet.sat = "/saturation/" ..sat.. ".png";
+                            local pj = Firecast.getPersonagemDe(sheet); await(pj:asyncUpdate({bar1Val=hunger, bar2Val=sat}));
         end);
 
     obj._e_event2 = obj.dataLink3:addEventListener("onChange",
         function (field, oldValue, newValue)
-            sat = tonumber(sheet.saturacao);
-            				if sat > hunger then
-            					sat = hunger
-            				end;
-            				if 0 > sat then
-            					sheet.saturacao = 0;
-            				end;
-            				sheet.sat = "Ficha/saturation/" ..sat.. ".png";
-            				local pj = Firecast.getPersonagemDe(sheet);
-            				pj.dono:requestSetBarValue(2, hunger);
-            				pj.dono:requestSetBarValue(3, sat);
-        end);
-
-    obj._e_event3 = obj.dataLink4:addEventListener("onChange",
-        function (field, oldValue, newValue)
-            self.experiencia.width = sheet.percent;
+            init();
+                            self.experiencia.width = sheet.percent;
         end);
 
     function obj:_releaseEvents()
-        __o_rrpgObjs.removeEventListenerById(self._e_event3);
         __o_rrpgObjs.removeEventListenerById(self._e_event2);
         __o_rrpgObjs.removeEventListenerById(self._e_event1);
         __o_rrpgObjs.removeEventListenerById(self._e_event0);
@@ -375,7 +375,6 @@ local function constructNew_fmr_mine()
         if self.dataLink1 ~= nil then self.dataLink1:destroy(); self.dataLink1 = nil; end;
         if self.label6 ~= nil then self.label6:destroy(); self.label6 = nil; end;
         if self.layout7 ~= nil then self.layout7:destroy(); self.layout7 = nil; end;
-        if self.dataLink4 ~= nil then self.dataLink4:destroy(); self.dataLink4 = nil; end;
         if self.label1 ~= nil then self.label1:destroy(); self.label1 = nil; end;
         if self.edit2 ~= nil then self.edit2:destroy(); self.edit2 = nil; end;
         if self.layout2 ~= nil then self.layout2:destroy(); self.layout2 = nil; end;
